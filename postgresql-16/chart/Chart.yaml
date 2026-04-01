@@ -1,0 +1,6 @@
+apiVersion: v2
+name: postgresql-16
+description: PostgreSQL 16 — dedicated instance for client databases
+type: application
+version: 0.1.0
+appVersion: "16"

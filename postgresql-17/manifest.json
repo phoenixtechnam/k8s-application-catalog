@@ -1,0 +1,108 @@
+{
+    "name": "PostgreSQL 17",
+    "code": "postgresql-17",
+    "type": "database",
+    "version": "17",
+    "description": "PostgreSQL 17 — current stable release with performance improvements",
+    "category": "database",
+    "min_plan": "starter",
+    "runtime": "postgresql",
+    "web_server": null,
+    "image": "postgres:17-alpine",
+    "has_dockerfile": false,
+    "deployment_strategy": "statefulset",
+    "components": [
+        {
+            "name": "postgresql-17",
+            "type": "statefulset",
+            "image": "postgres:17-alpine",
+            "ports": [
+                {
+                    "port": 5432,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/var/lib/postgresql/data",
+            "default_size": "5Gi",
+            "description": "Database data"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi",
+            "storage": "5Gi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        }
+    },
+    "health_check": {
+        "path": null,
+        "command": [
+            "pg_isready",
+            "-U",
+            "postgres"
+        ],
+        "port": null,
+        "initial_delay_seconds": 30,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "auth.database",
+            "label": "Database Name",
+            "type": "string",
+            "required": true
+        },
+        {
+            "key": "auth.username",
+            "label": "Username",
+            "type": "string",
+            "required": true
+        }
+    ],
+    "tags": [
+        "database",
+        "postgresql",
+        "postgres",
+        "sql"
+    ],
+    "provides": {
+        "database": {
+            "engine": "postgresql",
+            "version": "17",
+            "protocol": "postgresql",
+            "port": 5432,
+            "credentials": {
+                "root_env": "POSTGRES_PASSWORD",
+                "user_env": "POSTGRES_USER",
+                "password_env": "POSTGRES_PASSWORD",
+                "database_env": "POSTGRES_DB"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "POSTGRES_DB",
+            "POSTGRES_USER"
+        ],
+        "generated": [
+            "POSTGRES_PASSWORD"
+        ],
+        "fixed": {}
+    }
+}

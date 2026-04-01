@@ -1,0 +1,80 @@
+{
+    "name": "Redis 7",
+    "code": "redis-7",
+    "type": "service",
+    "version": "7",
+    "description": "Redis 7 in-memory cache — dedicated instance",
+    "category": "cache",
+    "min_plan": "business",
+    "runtime": "redis",
+    "web_server": null,
+    "image": "redis:7-alpine",
+    "has_dockerfile": false,
+    "deployment_strategy": "statefulset",
+    "components": [
+        {
+            "name": "redis-7",
+            "type": "statefulset",
+            "image": "redis:7-alpine",
+            "ports": [
+                {
+                    "port": 6379,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/data",
+            "default_size": "1Gi",
+            "description": "Cache data"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        }
+    },
+    "health_check": {
+        "path": null,
+        "command": [
+            "redis-cli",
+            "ping"
+        ],
+        "port": null,
+        "initial_delay_seconds": 10,
+        "period_seconds": 30
+    },
+    "parameters": [],
+    "tags": [
+        "cache",
+        "redis",
+        "key-value"
+    ],
+    "provides": {
+        "redis": {
+            "version": "7",
+            "protocol": "redis",
+            "port": 6379
+        }
+    },
+    "env_vars": {
+        "configurable": [],
+        "fixed": {}
+    }
+}

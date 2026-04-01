@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ruby-33
+description: Ruby 3.3 runtime with Puma web server for Rails and Rack applications
+type: application
+version: 0.1.0
+appVersion: "3.3"

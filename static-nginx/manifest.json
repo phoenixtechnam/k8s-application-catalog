@@ -1,0 +1,75 @@
+{
+    "name": "Static Website (via NGINX)",
+    "code": "static-nginx",
+    "type": "runtime",
+    "version": "1.27",
+    "description": "NGINX serving static HTML/CSS/JS sites",
+    "category": "runtime",
+    "min_plan": "starter",
+    "runtime": "static",
+    "web_server": "nginx",
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "static-nginx",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/static-nginx:1.27",
+            "ports": [
+                {
+                    "port": 80,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/var/www/html",
+            "default_size": "5Gi",
+            "description": "Static files"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.10",
+            "memory": "64Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "64Mi"
+        }
+    },
+    "health_check": {
+        "path": "/health",
+        "command": null,
+        "port": 80,
+        "initial_delay_seconds": 10,
+        "period_seconds": 30
+    },
+    "parameters": [],
+    "tags": [
+        "static",
+        "nginx",
+        "html"
+    ],
+    "env_vars": {
+        "configurable": [],
+        "fixed": {}
+    }
+}

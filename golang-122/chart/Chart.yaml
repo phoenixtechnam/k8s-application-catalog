@@ -1,0 +1,6 @@
+apiVersion: v2
+name: golang-122
+description: Go 1.22 runtime with multi-stage build for compiled binary applications
+type: application
+version: 0.1.0
+appVersion: "1.22"

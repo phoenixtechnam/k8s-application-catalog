@@ -1,0 +1,112 @@
+{
+    "name": "MariaDB 11.4",
+    "code": "mariadb-114",
+    "type": "database",
+    "version": "11.4",
+    "description": "MariaDB 11.4 LTS — current long-term support release",
+    "category": "database",
+    "min_plan": "starter",
+    "runtime": "mariadb",
+    "web_server": null,
+    "image": "mariadb:11.4",
+    "has_dockerfile": false,
+    "deployment_strategy": "statefulset",
+    "components": [
+        {
+            "name": "mariadb-114",
+            "type": "statefulset",
+            "image": "mariadb:11.4",
+            "ports": [
+                {
+                    "port": 3306,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/var/lib/mysql",
+            "default_size": "5Gi",
+            "description": "Database data"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi",
+            "storage": "5Gi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        }
+    },
+    "health_check": {
+        "path": null,
+        "command": [
+            "healthcheck.sh",
+            "--connect",
+            "--innodb_initialized"
+        ],
+        "port": null,
+        "initial_delay_seconds": 60,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "auth.database",
+            "label": "Database Name",
+            "type": "string",
+            "required": true
+        },
+        {
+            "key": "auth.username",
+            "label": "Username",
+            "type": "string",
+            "required": true
+        }
+    ],
+    "tags": [
+        "database",
+        "mariadb",
+        "mysql-compatible",
+        "sql",
+        "lts"
+    ],
+    "provides": {
+        "database": {
+            "engine": "mariadb",
+            "version": "11.4",
+            "protocol": "mysql",
+            "port": 3306,
+            "credentials": {
+                "root_env": "MARIADB_ROOT_PASSWORD",
+                "user_env": "MARIADB_USER",
+                "password_env": "MARIADB_PASSWORD",
+                "database_env": "MARIADB_DATABASE"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "MARIADB_DATABASE",
+            "MARIADB_USER"
+        ],
+        "generated": [
+            "MARIADB_ROOT_PASSWORD",
+            "MARIADB_PASSWORD"
+        ],
+        "fixed": {
+            "MARIADB_AUTO_UPGRADE": "1"
+        }
+    }
+}

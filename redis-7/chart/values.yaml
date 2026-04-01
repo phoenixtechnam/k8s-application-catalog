@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: redis
+  tag: "7-alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 6379
+
+resources:
+  requests:
+    cpu: 0.10
+    memory: 128Mi
+  limits:
+    cpu: 0.10
+    memory: 128Mi
+
+persistence:
+  enabled: true
+  mountPath: "/data"
+  size: 1Gi

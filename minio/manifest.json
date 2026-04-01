@@ -1,0 +1,101 @@
+{
+    "name": "MinIO Object Storage",
+    "code": "minio",
+    "type": "service",
+    "version": "2025-02-28",
+    "description": "S3-compatible object storage for file uploads, media, and backups",
+    "category": "storage",
+    "min_plan": "business",
+    "runtime": "minio",
+    "web_server": null,
+    "image": "minio/minio:RELEASE.2025-02-28T09-55-16Z",
+    "has_dockerfile": false,
+    "deployment_strategy": "statefulset",
+    "components": [
+        {
+            "name": "minio",
+            "type": "statefulset",
+            "image": "minio/minio:RELEASE.2025-02-28T09-55-16Z",
+            "ports": [
+                {
+                    "port": 9000,
+                    "protocol": "TCP",
+                    "ingress": false
+                },
+                {
+                    "port": 9001,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/data",
+            "default_size": "20Gi",
+            "description": "Object storage"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi",
+            "storage": "20Gi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        }
+    },
+    "health_check": {
+        "path": "/minio/health/live",
+        "command": null,
+        "port": 9000,
+        "initial_delay_seconds": 15,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.MINIO_BROWSER",
+            "label": "Enable Web Console",
+            "type": "string",
+            "default": "on"
+        }
+    ],
+    "tags": [
+        "storage",
+        "s3",
+        "object-storage",
+        "minio"
+    ],
+    "provides": {
+        "object_storage": {
+            "engine": "minio",
+            "protocol": "s3",
+            "port": 9000,
+            "console_port": 9001,
+            "credentials": {
+                "access_key_env": "MINIO_ROOT_USER",
+                "secret_key_env": "MINIO_ROOT_PASSWORD"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "MINIO_BROWSER"
+        ],
+        "fixed": {},
+        "generated": [
+            "MINIO_ROOT_USER",
+            "MINIO_ROOT_PASSWORD"
+        ]
+    }
+}

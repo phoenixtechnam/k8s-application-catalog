@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: oven/bun
+  tag: "1.2"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+  className: nginx
+  domain: ""
+  tls: true
+
+resources:
+  requests:
+    cpu: 0.25
+    memory: 256Mi
+  limits:
+    cpu: 0.25
+    memory: 256Mi
+
+persistence:
+  enabled: true
+  mountPath: "/app"
+  size: 5Gi
+
+env: {}

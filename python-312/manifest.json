@@ -1,0 +1,122 @@
+{
+    "name": "Python 3.12",
+    "code": "python-312",
+    "type": "runtime",
+    "version": "3.12",
+    "description": "Python 3.12 runtime for Django, Flask, FastAPI, and other Python web frameworks",
+    "category": "runtime",
+    "min_plan": "starter",
+    "runtime": "python",
+    "web_server": "gunicorn",
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "python-312",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/python-312:3.12",
+            "ports": [
+                {
+                    "port": 8000,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/app",
+            "default_size": "5Gi",
+            "description": "Application directory"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi"
+        }
+    },
+    "health_check": {
+        "path": "/health",
+        "command": null,
+        "port": 8000,
+        "initial_delay_seconds": 30,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.DJANGO_SETTINGS_MODULE",
+            "label": "Django Settings Module",
+            "type": "string"
+        },
+        {
+            "key": "env.FLASK_APP",
+            "label": "Flask App",
+            "type": "string"
+        },
+        {
+            "key": "env.DATABASE_URL",
+            "label": "Database Url",
+            "type": "string"
+        }
+    ],
+    "tags": [
+        "python",
+        "django",
+        "flask",
+        "fastapi",
+        "runtime"
+    ],
+    "services": {
+        "database": {
+            "required": false,
+            "engines": [
+                {
+                    "type": "postgresql",
+                    "min_version": "12"
+                },
+                {
+                    "type": "mariadb",
+                    "min_version": "10.4"
+                },
+                {
+                    "type": "mysql",
+                    "min_version": "5.7"
+                }
+            ],
+            "env_mapping": {
+                "url": "DATABASE_URL"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "DJANGO_SETTINGS_MODULE",
+            "FLASK_APP",
+            "DATABASE_URL"
+        ],
+        "fixed": {
+            "PORT": "8000",
+            "PYTHONUNBUFFERED": "1"
+        }
+    }
+}

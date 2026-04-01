@@ -1,0 +1,677 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://github.com/phoenixtechnam/k8s-application-catalog/schema/manifest.schema.json",
+    "title": "Unified Application Manifest",
+    "description": "Schema for all catalog entries — applications, runtimes, databases, and services. Every entry is deployed via a Helm chart.",
+    "type": "object",
+    "required": [
+        "name",
+        "code",
+        "type",
+        "version",
+        "description",
+        "components",
+        "networking",
+        "volumes",
+        "resources",
+        "health_check",
+        "parameters",
+        "tags"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Human-readable display name",
+            "minLength": 1,
+            "maxLength": 255
+        },
+        "code": {
+            "type": "string",
+            "description": "Unique identifier slug (must match directory name)",
+            "pattern": "^[a-z0-9][a-z0-9-]*[a-z0-9]$",
+            "minLength": 2,
+            "maxLength": 50
+        },
+        "type": {
+            "type": "string",
+            "description": "Entry type — determines which additional fields are required",
+            "enum": ["application", "runtime", "database", "service"]
+        },
+        "version": {
+            "type": "string",
+            "description": "Primary version (e.g., '6.9', '8.4', '10.6')",
+            "minLength": 1
+        },
+        "description": {
+            "type": "string",
+            "description": "Short description shown in catalog UI",
+            "minLength": 1,
+            "maxLength": 500
+        },
+        "url": {
+            "type": "string",
+            "description": "Official website or repository URL",
+            "format": "uri"
+        },
+        "documentation": {
+            "type": "string",
+            "description": "Official documentation URL",
+            "format": "uri"
+        },
+        "category": {
+            "type": "string",
+            "description": "Category for grouping in the UI",
+            "enum": [
+                "cms",
+                "productivity",
+                "communication",
+                "education",
+                "development",
+                "analytics",
+                "identity",
+                "ecommerce",
+                "media",
+                "documentation",
+                "automation",
+                "monitoring",
+                "community",
+                "security",
+                "devtools",
+                "billing",
+                "runtime",
+                "database",
+                "cache",
+                "storage",
+                "other"
+            ]
+        },
+        "tenancy": {
+            "type": "array",
+            "description": "Supported tenancy modes",
+            "items": {
+                "type": "string",
+                "enum": ["single-tenant", "multi-tenant"]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "min_plan": {
+            "type": "string",
+            "description": "Minimum hosting plan required",
+            "enum": ["starter", "business", "premium"]
+        },
+        "runtime": {
+            "type": "string",
+            "description": "Runtime engine identifier (for runtime/database/service types)",
+            "enum": [
+                "php",
+                "node",
+                "python",
+                "ruby",
+                "go",
+                "dotnet",
+                "java",
+                "static",
+                "rust",
+                "bun",
+                "mariadb",
+                "mysql",
+                "postgresql",
+                "redis",
+                "mongodb",
+                "memcached",
+                "minio"
+            ]
+        },
+        "web_server": {
+            "type": ["string", "null"],
+            "description": "Web server used by runtime entries (null for databases/services)",
+            "enum": ["nginx", "apache", "caddy", "gunicorn", "puma", "kestrel", "tomcat", "pm2", "built-in", null]
+        },
+        "image": {
+            "type": ["string", "null"],
+            "description": "Pre-built container image (null if built from Dockerfile)"
+        },
+        "has_dockerfile": {
+            "type": "boolean",
+            "description": "Whether this directory contains a Dockerfile for CI builds"
+        },
+        "deployment_strategy": {
+            "type": "string",
+            "description": "Kubernetes workload type for the primary component",
+            "enum": ["deployment", "statefulset"]
+        },
+        "components": {
+            "type": "array",
+            "description": "Kubernetes resources this entry deploys",
+            "items": {
+                "type": "object",
+                "required": ["name", "type", "image"],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Component name (used in template naming)",
+                        "pattern": "^[a-z0-9-]+$"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Kubernetes resource type",
+                        "enum": ["deployment", "statefulset", "cronjob", "job"]
+                    },
+                    "image": {
+                        "type": "string",
+                        "description": "Container image reference",
+                        "minLength": 1
+                    },
+                    "ports": {
+                        "type": "array",
+                        "description": "Ports this component exposes",
+                        "items": {
+                            "type": "object",
+                            "required": ["port", "protocol"],
+                            "properties": {
+                                "port": {
+                                    "type": "integer",
+                                    "minimum": 1,
+                                    "maximum": 65535
+                                },
+                                "protocol": {
+                                    "type": "string",
+                                    "enum": ["TCP", "UDP"]
+                                },
+                                "ingress": {
+                                    "type": "boolean",
+                                    "description": "Whether this port is exposed via the NGINX Ingress Controller",
+                                    "default": false
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "optional": {
+                        "type": "boolean",
+                        "description": "Whether this component can be disabled via parameters",
+                        "default": false
+                    },
+                    "schedule": {
+                        "type": "string",
+                        "description": "Cron schedule (only for cronjob type)",
+                        "pattern": "^[0-9*/,-]+\\s+[0-9*/,-]+\\s+[0-9*/,-]+\\s+[0-9*/,-]+\\s+[0-9*/,-]+$"
+                    }
+                },
+                "additionalProperties": false,
+                "if": {
+                    "properties": { "type": { "const": "cronjob" } }
+                },
+                "then": {
+                    "required": ["schedule"]
+                }
+            },
+            "minItems": 1
+        },
+        "networking": {
+            "type": "object",
+            "description": "Network exposure requirements",
+            "required": ["ingress_ports"],
+            "properties": {
+                "ingress_ports": {
+                    "type": "array",
+                    "description": "Ports exposed via NGINX Ingress with TLS",
+                    "items": {
+                        "type": "object",
+                        "required": ["port", "protocol", "tls"],
+                        "properties": {
+                            "port": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 65535
+                            },
+                            "protocol": {
+                                "type": "string",
+                                "enum": ["TCP"]
+                            },
+                            "tls": {
+                                "type": "boolean"
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "host_ports": {
+                    "type": "array",
+                    "description": "Ports that require direct host-level exposure",
+                    "items": {
+                        "type": "object",
+                        "required": ["port", "protocol", "component", "description"],
+                        "properties": {
+                            "port": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 65535
+                            },
+                            "protocol": {
+                                "type": "string",
+                                "enum": ["TCP", "UDP"]
+                            },
+                            "component": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "optional": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "remappable": {
+                                "type": "boolean",
+                                "default": false
+                            },
+                            "remap_range": {
+                                "type": "array",
+                                "items": { "type": "integer" },
+                                "minItems": 2,
+                                "maxItems": 2
+                            },
+                            "max_instances_per_node": {
+                                "type": "integer",
+                                "minimum": 1
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "websocket": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "notes": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "volumes": {
+            "type": "array",
+            "description": "Persistent volumes this entry needs",
+            "items": {
+                "type": "object",
+                "required": ["name", "mount_path", "default_size"],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9-]+$"
+                    },
+                    "mount_path": {
+                        "type": "string",
+                        "pattern": "^/"
+                    },
+                    "default_size": {
+                        "type": "string",
+                        "pattern": "^[0-9]+(Mi|Gi)$"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "optional": {
+                        "type": "boolean",
+                        "default": false
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "resources": {
+            "type": "object",
+            "description": "Resource allocation profiles",
+            "required": ["default", "minimum"],
+            "properties": {
+                "default": {
+                    "type": "object",
+                    "required": ["cpu", "memory"],
+                    "properties": {
+                        "cpu": { "type": "string", "pattern": "^[0-9]+\\.?[0-9]*$" },
+                        "memory": { "type": "string", "pattern": "^[0-9]+(Mi|Gi)$" },
+                        "storage": { "type": "string", "pattern": "^[0-9]+(Mi|Gi)$" }
+                    },
+                    "additionalProperties": false
+                },
+                "minimum": {
+                    "type": "object",
+                    "required": ["cpu", "memory"],
+                    "properties": {
+                        "cpu": { "type": "string", "pattern": "^[0-9]+\\.?[0-9]*$" },
+                        "memory": { "type": "string", "pattern": "^[0-9]+(Mi|Gi)$" },
+                        "storage": { "type": "string", "pattern": "^[0-9]+(Mi|Gi)$" }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "health_check": {
+            "type": "object",
+            "description": "Primary health check configuration",
+            "required": ["initial_delay_seconds", "period_seconds"],
+            "properties": {
+                "path": {
+                    "type": ["string", "null"],
+                    "description": "HTTP GET path for health check"
+                },
+                "command": {
+                    "type": ["array", "null"],
+                    "description": "Exec command for health check",
+                    "items": { "type": "string" }
+                },
+                "port": {
+                    "type": ["integer", "null"],
+                    "minimum": 1,
+                    "maximum": 65535
+                },
+                "initial_delay_seconds": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 600
+                },
+                "period_seconds": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 60
+                }
+            },
+            "additionalProperties": false
+        },
+        "parameters": {
+            "type": "array",
+            "description": "Admin/client-configurable parameters, passed as Helm values",
+            "items": {
+                "type": "object",
+                "required": ["key", "label", "type"],
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "pattern": "^[a-zA-Z0-9_.]+$"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["string", "secret", "boolean", "integer", "string[]"]
+                    },
+                    "default": {
+                        "description": "Default value"
+                    },
+                    "required": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "tags": {
+            "type": "array",
+            "description": "Keywords for filtering and search",
+            "items": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+            },
+            "minItems": 1
+        },
+        "services": {
+            "type": "object",
+            "description": "Companion services this entry requires (for runtimes)",
+            "properties": {
+                "database": {
+                    "type": "object",
+                    "required": ["required", "engines", "env_mapping"],
+                    "properties": {
+                        "required": { "type": "boolean" },
+                        "engines": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": ["type", "min_version"],
+                                "properties": {
+                                    "type": { "type": "string", "enum": ["mariadb", "mysql", "postgresql"] },
+                                    "min_version": { "type": "string" }
+                                },
+                                "additionalProperties": false
+                            },
+                            "minItems": 1
+                        },
+                        "env_mapping": {
+                            "type": "object",
+                            "properties": {
+                                "host": { "type": "string" },
+                                "port": { "type": "string" },
+                                "name": { "type": "string" },
+                                "user": { "type": "string" },
+                                "password": { "type": "string" },
+                                "type": { "type": "string" },
+                                "url": { "type": "string" }
+                            },
+                            "additionalProperties": false,
+                            "minProperties": 1
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "redis": {
+                    "type": "object",
+                    "required": ["required", "env_mapping"],
+                    "properties": {
+                        "required": { "type": "boolean" },
+                        "min_version": { "type": "string" },
+                        "env_mapping": {
+                            "type": "object",
+                            "properties": {
+                                "host": { "type": "string" },
+                                "port": { "type": "string" },
+                                "url": { "type": "string" },
+                                "password": { "type": "string" }
+                            },
+                            "additionalProperties": false,
+                            "minProperties": 1
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "provides": {
+            "type": "object",
+            "description": "Services this entry provides to others (for databases/services)",
+            "properties": {
+                "database": {
+                    "type": "object",
+                    "required": ["engine", "version", "protocol", "port", "credentials"],
+                    "properties": {
+                        "engine": { "type": "string", "enum": ["mariadb", "mysql", "postgresql", "mongodb"] },
+                        "version": { "type": "string" },
+                        "protocol": { "type": "string", "enum": ["mysql", "postgresql", "mongodb"] },
+                        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+                        "credentials": {
+                            "type": "object",
+                            "required": ["root_env", "user_env", "password_env", "database_env"],
+                            "properties": {
+                                "root_env": { "type": "string" },
+                                "user_env": { "type": "string" },
+                                "password_env": { "type": "string" },
+                                "database_env": { "type": "string" }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "redis": {
+                    "type": "object",
+                    "required": ["version", "protocol", "port"],
+                    "properties": {
+                        "version": { "type": "string" },
+                        "protocol": { "type": "string", "enum": ["redis"] },
+                        "port": { "type": "integer", "minimum": 1, "maximum": 65535 }
+                    },
+                    "additionalProperties": false
+                },
+                "cache": {
+                    "type": "object",
+                    "required": ["engine", "protocol", "port"],
+                    "properties": {
+                        "engine": { "type": "string" },
+                        "version": { "type": "string" },
+                        "protocol": { "type": "string" },
+                        "port": { "type": "integer", "minimum": 1, "maximum": 65535 }
+                    },
+                    "additionalProperties": false
+                },
+                "object_storage": {
+                    "type": "object",
+                    "required": ["engine", "protocol", "port"],
+                    "properties": {
+                        "engine": { "type": "string" },
+                        "protocol": { "type": "string" },
+                        "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+                        "console_port": { "type": "integer", "minimum": 1, "maximum": 65535 },
+                        "credentials": {
+                            "type": "object",
+                            "properties": {
+                                "access_key_env": { "type": "string" },
+                                "secret_key_env": { "type": "string" }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": false
+        },
+        "env_vars": {
+            "type": "object",
+            "description": "Environment variable declarations (for runtime/database/service types)",
+            "properties": {
+                "configurable": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "generated": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                },
+                "fixed": {
+                    "type": "object",
+                    "additionalProperties": { "type": "string" }
+                }
+            },
+            "additionalProperties": false
+        },
+        "supportedVersions": {
+            "type": "array",
+            "description": "Multiple supported versions with upgrade paths and EOL tracking",
+            "items": {
+                "type": "object",
+                "required": ["version", "components"],
+                "properties": {
+                    "version": { "type": "string", "minLength": 1 },
+                    "components": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": ["name", "image"],
+                            "properties": {
+                                "name": { "type": "string" },
+                                "image": { "type": "string" }
+                            },
+                            "additionalProperties": false
+                        },
+                        "minItems": 1
+                    },
+                    "upgradeFrom": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "uniqueItems": true
+                    },
+                    "eolDate": { "type": "string", "format": "date" },
+                    "breakingChanges": { "type": "string" },
+                    "envChanges": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "required": ["key", "action"],
+                            "properties": {
+                                "key": { "type": "string" },
+                                "action": { "type": "string", "enum": ["add", "remove", "rename"] },
+                                "oldKey": { "type": "string" },
+                                "default": {}
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "migrationNotes": { "type": "string" },
+                    "minResources": {
+                        "type": "object",
+                        "properties": {
+                            "cpu": { "type": "string", "pattern": "^[0-9]+\\.?[0-9]*$" },
+                            "memory": { "type": "string", "pattern": "^[0-9]+(Mi|Gi)$" },
+                            "storage": { "type": "string", "pattern": "^[0-9]+(Mi|Gi)$" }
+                        },
+                        "additionalProperties": false
+                    },
+                    "isDefault": { "type": "boolean", "default": false }
+                },
+                "additionalProperties": false
+            }
+        }
+    },
+    "allOf": [
+        {
+            "if": {
+                "properties": { "type": { "const": "application" } }
+            },
+            "then": {
+                "required": ["category", "tenancy"]
+            }
+        },
+        {
+            "if": {
+                "properties": { "type": { "const": "runtime" } }
+            },
+            "then": {
+                "required": ["runtime", "web_server", "has_dockerfile", "min_plan", "deployment_strategy"],
+                "properties": {
+                    "deployment_strategy": { "const": "deployment" }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": { "type": { "const": "database" } }
+            },
+            "then": {
+                "required": ["runtime", "has_dockerfile", "min_plan", "deployment_strategy", "provides"],
+                "properties": {
+                    "deployment_strategy": { "const": "statefulset" }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": { "type": { "const": "service" } }
+            },
+            "then": {
+                "required": ["runtime", "has_dockerfile", "min_plan", "deployment_strategy", "provides"]
+            }
+        }
+    ],
+    "additionalProperties": false
+}

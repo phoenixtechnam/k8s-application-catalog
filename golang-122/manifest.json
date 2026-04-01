@@ -1,0 +1,107 @@
+{
+    "name": "Go 1.22",
+    "code": "golang-122",
+    "type": "runtime",
+    "version": "1.22",
+    "description": "Go 1.22 runtime with multi-stage build for compiled binary applications",
+    "category": "runtime",
+    "min_plan": "business",
+    "runtime": "go",
+    "web_server": "built-in",
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "golang-122",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/golang-122:1.22",
+            "ports": [
+                {
+                    "port": 8080,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/app",
+            "default_size": "5Gi",
+            "description": "Application directory"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi"
+        }
+    },
+    "health_check": {
+        "path": "/health",
+        "command": null,
+        "port": 8080,
+        "initial_delay_seconds": 10,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.DATABASE_URL",
+            "label": "Database Url",
+            "type": "string"
+        }
+    ],
+    "tags": [
+        "go",
+        "golang",
+        "compiled"
+    ],
+    "services": {
+        "database": {
+            "required": false,
+            "engines": [
+                {
+                    "type": "mariadb",
+                    "min_version": "10.4"
+                },
+                {
+                    "type": "mysql",
+                    "min_version": "5.7"
+                },
+                {
+                    "type": "postgresql",
+                    "min_version": "12"
+                }
+            ],
+            "env_mapping": {
+                "url": "DATABASE_URL"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "DATABASE_URL"
+        ],
+        "fixed": {
+            "PORT": "8080"
+        }
+    }
+}

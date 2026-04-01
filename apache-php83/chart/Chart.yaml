@@ -1,0 +1,6 @@
+apiVersion: v2
+name: apache-php83
+description: Apache HTTP Server with mod_php 8.3 for traditional PHP hosting with .htaccess support
+type: application
+version: 0.1.0
+appVersion: "8.3"

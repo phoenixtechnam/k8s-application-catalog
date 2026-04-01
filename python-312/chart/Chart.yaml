@@ -1,0 +1,6 @@
+apiVersion: v2
+name: python-312
+description: Python 3.12 runtime for Django, Flask, FastAPI, and other Python web frameworks
+type: application
+version: 0.1.0
+appVersion: "3.12"

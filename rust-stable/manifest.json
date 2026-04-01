@@ -1,0 +1,111 @@
+{
+    "name": "Rust (Stable)",
+    "code": "rust-stable",
+    "type": "runtime",
+    "version": "1.85",
+    "description": "Rust stable runtime for compiled web services — Actix, Axum, Rocket, and other Rust web frameworks",
+    "category": "runtime",
+    "min_plan": "business",
+    "runtime": "rust",
+    "web_server": null,
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "rust-stable",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/rust-stable:1.85",
+            "ports": [
+                {
+                    "port": 8080,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/app",
+            "default_size": "5Gi",
+            "description": "Application directory"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.50",
+            "memory": "512Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "256Mi"
+        }
+    },
+    "health_check": {
+        "path": "/health",
+        "command": null,
+        "port": 8080,
+        "initial_delay_seconds": 10,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.RUST_LOG",
+            "label": "Rust Log",
+            "type": "string"
+        },
+        {
+            "key": "env.DATABASE_URL",
+            "label": "Database Url",
+            "type": "string"
+        }
+    ],
+    "tags": [
+        "rust",
+        "actix",
+        "axum",
+        "rocket",
+        "runtime"
+    ],
+    "services": {
+        "database": {
+            "required": false,
+            "engines": [
+                {
+                    "type": "postgresql",
+                    "min_version": "12"
+                },
+                {
+                    "type": "mariadb",
+                    "min_version": "10.4"
+                }
+            ],
+            "env_mapping": {
+                "url": "DATABASE_URL"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "RUST_LOG",
+            "DATABASE_URL"
+        ],
+        "fixed": {
+            "PORT": "8080"
+        }
+    }
+}

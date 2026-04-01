@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mysql-84
+description: MySQL 8.4 LTS — dedicated instance for applications requiring MySQL specifically
+type: application
+version: 0.1.0
+appVersion: "8.4"

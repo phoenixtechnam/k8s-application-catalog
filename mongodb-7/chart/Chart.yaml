@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mongodb-7
+description: MongoDB 7 document database — dedicated instance for NoSQL applications
+type: application
+version: 0.1.0
+appVersion: "7"

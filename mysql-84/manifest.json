@@ -1,0 +1,109 @@
+{
+    "name": "MySQL 8.4",
+    "code": "mysql-84",
+    "type": "database",
+    "version": "8.4",
+    "description": "MySQL 8.4 LTS — dedicated instance for applications requiring MySQL specifically",
+    "category": "database",
+    "min_plan": "starter",
+    "runtime": "mysql",
+    "web_server": null,
+    "image": "mysql:8.4",
+    "has_dockerfile": false,
+    "deployment_strategy": "statefulset",
+    "components": [
+        {
+            "name": "mysql-84",
+            "type": "statefulset",
+            "image": "mysql:8.4",
+            "ports": [
+                {
+                    "port": 3306,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/var/lib/mysql",
+            "default_size": "5Gi",
+            "description": "Database data"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi",
+            "storage": "5Gi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        }
+    },
+    "health_check": {
+        "path": null,
+        "command": [
+            "mysqladmin",
+            "ping",
+            "-h",
+            "localhost"
+        ],
+        "port": null,
+        "initial_delay_seconds": 60,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "auth.database",
+            "label": "Database Name",
+            "type": "string",
+            "required": true
+        },
+        {
+            "key": "auth.username",
+            "label": "Username",
+            "type": "string",
+            "required": true
+        }
+    ],
+    "tags": [
+        "database",
+        "mysql",
+        "sql"
+    ],
+    "provides": {
+        "database": {
+            "engine": "mysql",
+            "version": "8.4",
+            "protocol": "mysql",
+            "port": 3306,
+            "credentials": {
+                "root_env": "MYSQL_ROOT_PASSWORD",
+                "user_env": "MYSQL_USER",
+                "password_env": "MYSQL_PASSWORD",
+                "database_env": "MYSQL_DATABASE"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "MYSQL_DATABASE",
+            "MYSQL_USER"
+        ],
+        "generated": [
+            "MYSQL_ROOT_PASSWORD",
+            "MYSQL_PASSWORD"
+        ],
+        "fixed": {}
+    }
+}

@@ -1,0 +1,75 @@
+{
+    "name": "Static Website (via Apache)",
+    "code": "static-apache",
+    "type": "runtime",
+    "version": "2.4",
+    "description": "Apache HTTP Server serving static HTML/CSS/JS sites",
+    "category": "runtime",
+    "min_plan": "starter",
+    "runtime": "static",
+    "web_server": "apache",
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "static-apache",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/static-apache:2.4",
+            "ports": [
+                {
+                    "port": 80,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/usr/local/apache2/htdocs",
+            "default_size": "5Gi",
+            "description": "Static files"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.10",
+            "memory": "64Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "64Mi"
+        }
+    },
+    "health_check": {
+        "path": "/",
+        "command": null,
+        "port": 80,
+        "initial_delay_seconds": 10,
+        "period_seconds": 30
+    },
+    "parameters": [],
+    "tags": [
+        "static",
+        "apache",
+        "html"
+    ],
+    "env_vars": {
+        "configurable": [],
+        "fixed": {}
+    }
+}

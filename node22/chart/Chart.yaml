@@ -1,0 +1,6 @@
+apiVersion: v2
+name: node22
+description: Node.js 22 LTS runtime for server-side JavaScript applications
+type: application
+version: 0.1.0
+appVersion: "22"

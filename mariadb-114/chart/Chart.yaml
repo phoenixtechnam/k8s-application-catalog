@@ -1,0 +1,6 @@
+apiVersion: v2
+name: mariadb-114
+description: MariaDB 11.4 LTS — current long-term support release
+type: application
+version: 0.1.0
+appVersion: "11.4"

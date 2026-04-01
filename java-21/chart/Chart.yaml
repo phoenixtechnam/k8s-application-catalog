@@ -1,0 +1,6 @@
+apiVersion: v2
+name: java-21
+description: Eclipse Temurin Java 21 runtime for Spring Boot and JVM applications
+type: application
+version: 0.1.0
+appVersion: "21"

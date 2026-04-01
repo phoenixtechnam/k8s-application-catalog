@@ -1,0 +1,113 @@
+{
+    "name": "Java 21",
+    "code": "java-21",
+    "type": "runtime",
+    "version": "21",
+    "description": "Eclipse Temurin Java 21 runtime for Spring Boot and JVM applications",
+    "category": "runtime",
+    "min_plan": "starter",
+    "runtime": "java",
+    "web_server": "built-in",
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "java-21",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/java-21:21",
+            "ports": [
+                {
+                    "port": 8080,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/app",
+            "default_size": "5Gi",
+            "description": "Application directory"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.50",
+            "memory": "512Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "256Mi"
+        }
+    },
+    "health_check": {
+        "path": "/actuator/health",
+        "command": null,
+        "port": 8080,
+        "initial_delay_seconds": 60,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.SPRING_PROFILES_ACTIVE",
+            "label": "Spring Profiles Active",
+            "type": "string"
+        },
+        {
+            "key": "env.DATABASE_URL",
+            "label": "Database Url",
+            "type": "string"
+        }
+    ],
+    "tags": [
+        "java",
+        "spring-boot",
+        "jvm"
+    ],
+    "services": {
+        "database": {
+            "required": false,
+            "engines": [
+                {
+                    "type": "mariadb",
+                    "min_version": "10.4"
+                },
+                {
+                    "type": "mysql",
+                    "min_version": "5.7"
+                },
+                {
+                    "type": "postgresql",
+                    "min_version": "12"
+                }
+            ],
+            "env_mapping": {
+                "url": "DATABASE_URL"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "SPRING_PROFILES_ACTIVE",
+            "DATABASE_URL"
+        ],
+        "fixed": {
+            "PORT": "8080"
+        }
+    }
+}

@@ -1,0 +1,113 @@
+{
+    "name": ".NET 8",
+    "code": "dotnet-8",
+    "type": "runtime",
+    "version": "8.0",
+    "description": "ASP.NET Core 8.0 runtime with Kestrel web server for .NET applications",
+    "category": "runtime",
+    "min_plan": "starter",
+    "runtime": "dotnet",
+    "web_server": "kestrel",
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "dotnet-8",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/dotnet-8:8.0",
+            "ports": [
+                {
+                    "port": 5000,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/app",
+            "default_size": "5Gi",
+            "description": "Application directory"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi"
+        }
+    },
+    "health_check": {
+        "path": "/health",
+        "command": null,
+        "port": 8080,
+        "initial_delay_seconds": 30,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.ASPNETCORE_ENVIRONMENT",
+            "label": "Aspnetcore Environment",
+            "type": "string"
+        },
+        {
+            "key": "env.ConnectionStrings__Default",
+            "label": "Connectionstrings  Default",
+            "type": "string"
+        }
+    ],
+    "tags": [
+        "dotnet",
+        "csharp",
+        "aspnet"
+    ],
+    "services": {
+        "database": {
+            "required": false,
+            "engines": [
+                {
+                    "type": "mariadb",
+                    "min_version": "10.4"
+                },
+                {
+                    "type": "mysql",
+                    "min_version": "5.7"
+                },
+                {
+                    "type": "postgresql",
+                    "min_version": "12"
+                }
+            ],
+            "env_mapping": {
+                "url": "DATABASE_URL"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "ASPNETCORE_ENVIRONMENT",
+            "ConnectionStrings__Default"
+        ],
+        "fixed": {
+            "ASPNETCORE_URLS": "http://+:5000"
+        }
+    }
+}

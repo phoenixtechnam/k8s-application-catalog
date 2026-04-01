@@ -1,0 +1,29 @@
+replicaCount: 1
+
+image:
+  repository: mysql
+  tag: "9.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 3306
+
+resources:
+  requests:
+    cpu: 0.25
+    memory: 512Mi
+  limits:
+    cpu: 0.25
+    memory: 512Mi
+
+persistence:
+  enabled: true
+  mountPath: "/var/lib/mysql"
+  size: 5Gi
+
+auth:
+  rootPassword: ""
+  database: ""
+  username: ""
+  password: ""

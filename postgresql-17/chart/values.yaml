@@ -1,0 +1,29 @@
+replicaCount: 1
+
+image:
+  repository: postgres
+  tag: "17-alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5432
+
+resources:
+  requests:
+    cpu: 0.25
+    memory: 256Mi
+  limits:
+    cpu: 0.25
+    memory: 256Mi
+
+persistence:
+  enabled: true
+  mountPath: "/var/lib/postgresql/data"
+  size: 5Gi
+
+auth:
+  rootPassword: ""
+  database: ""
+  username: ""
+  password: ""

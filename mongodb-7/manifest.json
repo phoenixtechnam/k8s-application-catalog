@@ -1,0 +1,102 @@
+{
+    "name": "MongoDB 7",
+    "code": "mongodb-7",
+    "type": "database",
+    "version": "7",
+    "description": "MongoDB 7 document database — dedicated instance for NoSQL applications",
+    "category": "database",
+    "min_plan": "business",
+    "runtime": "mongodb",
+    "web_server": null,
+    "image": "mongo:7.0",
+    "has_dockerfile": false,
+    "deployment_strategy": "statefulset",
+    "components": [
+        {
+            "name": "mongodb-7",
+            "type": "statefulset",
+            "image": "mongo:7.0",
+            "ports": [
+                {
+                    "port": 27017,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/data/db",
+            "default_size": "10Gi",
+            "description": "Database data"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "512Mi",
+            "storage": "10Gi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        }
+    },
+    "health_check": {
+        "path": null,
+        "command": [
+            "mongosh",
+            "--eval",
+            "db.adminCommand('ping')"
+        ],
+        "port": null,
+        "initial_delay_seconds": 30,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "auth.database",
+            "label": "Database Name",
+            "type": "string",
+            "required": true
+        }
+    ],
+    "tags": [
+        "database",
+        "mongodb",
+        "nosql",
+        "document"
+    ],
+    "provides": {
+        "database": {
+            "engine": "mongodb",
+            "version": "7.0",
+            "protocol": "mongodb",
+            "port": 27017,
+            "credentials": {
+                "root_env": "MONGO_INITDB_ROOT_USERNAME",
+                "user_env": "MONGO_INITDB_ROOT_USERNAME",
+                "password_env": "MONGO_INITDB_ROOT_PASSWORD",
+                "database_env": "MONGO_INITDB_DATABASE"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "MONGO_INITDB_DATABASE"
+        ],
+        "generated": [
+            "MONGO_INITDB_ROOT_USERNAME",
+            "MONGO_INITDB_ROOT_PASSWORD"
+        ],
+        "fixed": {}
+    }
+}

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: rust-stable
+description: Rust stable runtime for compiled web services — Actix, Axum, Rocket, and other Rust web frameworks
+type: application
+version: 0.1.0
+appVersion: "1.85"

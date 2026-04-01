@@ -1,0 +1,20 @@
+{
+    "name": "k8s-application-catalog",
+    "version": "1.0.0",
+    "description": "Unified application catalog for the K8s Hosting Platform — runtimes, databases, services, and managed application stacks.",
+    "type": "module",
+    "scripts": {
+        "validate": "node scripts/validate.mjs",
+        "check-patches": "node scripts/check-patches.mjs",
+        "format:check": "node scripts/format-check.mjs",
+        "format:fix": "node scripts/format-fix.mjs"
+    },
+    "devDependencies": {
+        "ajv": "^8.17.1",
+        "ajv-formats": "^3.0.1"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "private": true
+}

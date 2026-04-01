@@ -1,0 +1,110 @@
+{
+    "name": "Bun (Latest)",
+    "code": "bun-latest",
+    "type": "runtime",
+    "version": "1.2",
+    "description": "Bun runtime — fast JavaScript/TypeScript runtime, bundler, and package manager",
+    "category": "runtime",
+    "min_plan": "starter",
+    "runtime": "bun",
+    "web_server": "built-in",
+    "image": "oven/bun:1.2",
+    "has_dockerfile": false,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "bun-latest",
+            "type": "deployment",
+            "image": "oven/bun:1.2",
+            "ports": [
+                {
+                    "port": 3000,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/app",
+            "default_size": "5Gi",
+            "description": "Application directory"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi"
+        }
+    },
+    "health_check": {
+        "path": "/health",
+        "command": null,
+        "port": 3000,
+        "initial_delay_seconds": 15,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.NODE_ENV",
+            "label": "Node Env",
+            "type": "string"
+        },
+        {
+            "key": "env.DATABASE_URL",
+            "label": "Database Url",
+            "type": "string"
+        }
+    ],
+    "tags": [
+        "bun",
+        "javascript",
+        "typescript",
+        "runtime"
+    ],
+    "services": {
+        "database": {
+            "required": false,
+            "engines": [
+                {
+                    "type": "postgresql",
+                    "min_version": "12"
+                },
+                {
+                    "type": "mariadb",
+                    "min_version": "10.4"
+                }
+            ],
+            "env_mapping": {
+                "url": "DATABASE_URL"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "NODE_ENV",
+            "DATABASE_URL"
+        ],
+        "fixed": {
+            "PORT": "3000"
+        }
+    }
+}

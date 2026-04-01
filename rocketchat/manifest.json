@@ -1,0 +1,181 @@
+{
+    "name": "Rocket.Chat",
+    "code": "rocketchat",
+    "type": "application",
+    "version": "8",
+    "description": "Team messaging and collaboration with channels, direct messages, video calls, and file sharing.",
+    "url": "https://www.rocket.chat",
+    "documentation": "https://docs.rocket.chat",
+    "category": "communication",
+    "tenancy": [
+        "single-tenant"
+    ],
+    "components": [
+        {
+            "name": "rocketchat",
+            "type": "deployment",
+            "image": "rocket.chat:8",
+            "ports": [
+                {
+                    "port": 3000,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        },
+        {
+            "name": "mongodb",
+            "type": "statefulset",
+            "image": "mongo:8",
+            "ports": [
+                {
+                    "port": 27017,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web UI"
+            }
+        ],
+        "host_ports": [],
+        "websocket": true
+    },
+    "volumes": [
+        {
+            "name": "rocketchat-uploads",
+            "mount_path": "/app/uploads",
+            "default_size": "10Gi",
+            "description": "Rocket.Chat file uploads"
+        },
+        {
+            "name": "rocketchat-database",
+            "mount_path": "/data/db",
+            "default_size": "10Gi",
+            "description": "MongoDB data directory"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "1.00",
+            "memory": "1Gi",
+            "storage": "20Gi"
+        },
+        "minimum": {
+            "cpu": "0.50",
+            "memory": "512Mi",
+            "storage": "10Gi"
+        }
+    },
+    "health_check": {
+        "path": "/api/info",
+        "port": 3000,
+        "initial_delay_seconds": 60,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "ingress.domain",
+            "label": "Domain",
+            "type": "string",
+            "required": true
+        },
+        {
+            "key": "rocketchat.adminUser",
+            "label": "Admin Username",
+            "type": "string",
+            "default": "admin",
+            "required": true
+        },
+        {
+            "key": "rocketchat.adminPassword",
+            "label": "Admin Password",
+            "type": "secret",
+            "required": true
+        },
+        {
+            "key": "rocketchat.adminEmail",
+            "label": "Admin Email",
+            "type": "string",
+            "required": true
+        },
+        {
+            "key": "mongodb.storageSize",
+            "label": "Database Storage Size",
+            "type": "string",
+            "default": "10Gi"
+        },
+        {
+            "key": "rcUploads.storageSize",
+            "label": "Uploads Storage Size",
+            "type": "string",
+            "default": "10Gi"
+        },
+        {
+            "key": "smtp.host",
+            "label": "SMTP Server",
+            "type": "string",
+            "required": false
+        },
+        {
+            "key": "smtp.port",
+            "label": "SMTP Port",
+            "type": "integer",
+            "default": 587,
+            "required": false
+        },
+        {
+            "key": "smtp.username",
+            "label": "SMTP Username",
+            "type": "string",
+            "required": false
+        },
+        {
+            "key": "smtp.password",
+            "label": "SMTP Password",
+            "type": "secret",
+            "required": false
+        }
+    ],
+    "tags": [
+        "chat",
+        "messaging",
+        "rocketchat",
+        "communication"
+    ],
+    "supportedVersions": [
+        {
+            "version": "7",
+            "components": [
+                {
+                    "name": "rocketchat",
+                    "image": "rocket.chat:7"
+                }
+            ],
+            "eolDate": "2026-09-30",
+            "migrationNotes": "Rocket.Chat 7.x reaches end-of-life September 2026. Upgrade to 8.x.",
+            "isDefault": false
+        },
+        {
+            "version": "8",
+            "components": [
+                {
+                    "name": "rocketchat",
+                    "image": "rocket.chat:8"
+                }
+            ],
+            "upgradeFrom": [
+                "7"
+            ],
+            "breakingChanges": "Major version upgrade. Apps marketplace changes.",
+            "isDefault": true
+        }
+    ]
+}

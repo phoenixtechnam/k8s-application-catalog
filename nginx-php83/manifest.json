@@ -1,0 +1,117 @@
+{
+    "name": "NGINX + PHP 8.3",
+    "code": "nginx-php83",
+    "type": "runtime",
+    "version": "8.3",
+    "description": "NGINX web server with PHP-FPM 8.3 for modern PHP applications",
+    "category": "runtime",
+    "min_plan": "starter",
+    "runtime": "php",
+    "web_server": "nginx",
+    "image": null,
+    "has_dockerfile": true,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "nginx-php83",
+            "type": "deployment",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php83:8.3",
+            "ports": [
+                {
+                    "port": 80,
+                    "protocol": "TCP",
+                    "ingress": true
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [
+            {
+                "port": 443,
+                "protocol": "TCP",
+                "tls": true,
+                "description": "Web traffic"
+            }
+        ],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [
+        {
+            "name": "data",
+            "mount_path": "/var/www/html",
+            "default_size": "5Gi",
+            "description": "Document root"
+        }
+    ],
+    "resources": {
+        "default": {
+            "cpu": "0.25",
+            "memory": "256Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi"
+        }
+    },
+    "health_check": {
+        "path": "/health",
+        "command": null,
+        "port": 80,
+        "initial_delay_seconds": 30,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.PHP_MEMORY_LIMIT",
+            "label": "Php Memory Limit",
+            "type": "string"
+        },
+        {
+            "key": "env.PHP_UPLOAD_MAX_FILESIZE",
+            "label": "Php Upload Max Filesize",
+            "type": "string"
+        },
+        {
+            "key": "env.PHP_MAX_EXECUTION_TIME",
+            "label": "Php Max Execution Time",
+            "type": "string"
+        }
+    ],
+    "tags": [
+        "php",
+        "nginx",
+        "web"
+    ],
+    "services": {
+        "database": {
+            "required": false,
+            "engines": [
+                {
+                    "type": "mariadb",
+                    "min_version": "10.4"
+                },
+                {
+                    "type": "mysql",
+                    "min_version": "5.7"
+                }
+            ],
+            "env_mapping": {
+                "host": "DB_HOST",
+                "port": "DB_PORT",
+                "name": "DB_NAME",
+                "user": "DB_USER",
+                "password": "DB_PASSWORD"
+            }
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "PHP_MEMORY_LIMIT",
+            "PHP_UPLOAD_MAX_FILESIZE",
+            "PHP_MAX_EXECUTION_TIME"
+        ],
+        "fixed": {}
+    }
+}

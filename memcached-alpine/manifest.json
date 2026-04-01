@@ -1,0 +1,83 @@
+{
+    "name": "Memcached",
+    "code": "memcached-alpine",
+    "type": "service",
+    "version": "1.6",
+    "description": "Memcached in-memory cache — lightweight alternative to Redis for simple key-value caching",
+    "category": "cache",
+    "min_plan": "starter",
+    "runtime": "memcached",
+    "web_server": null,
+    "image": "memcached:1.6-alpine",
+    "has_dockerfile": false,
+    "deployment_strategy": "deployment",
+    "components": [
+        {
+            "name": "memcached-alpine",
+            "type": "deployment",
+            "image": "memcached:1.6-alpine",
+            "ports": [
+                {
+                    "port": 11211,
+                    "protocol": "TCP",
+                    "ingress": false
+                }
+            ]
+        }
+    ],
+    "networking": {
+        "ingress_ports": [],
+        "host_ports": [],
+        "websocket": false
+    },
+    "volumes": [],
+    "resources": {
+        "default": {
+            "cpu": "0.10",
+            "memory": "128Mi"
+        },
+        "minimum": {
+            "cpu": "0.10",
+            "memory": "128Mi",
+            "storage": "1Gi"
+        }
+    },
+    "health_check": {
+        "path": null,
+        "command": [
+            "sh",
+            "-c",
+            "echo stats | nc localhost 11211 | grep -q pid"
+        ],
+        "port": null,
+        "initial_delay_seconds": 10,
+        "period_seconds": 30
+    },
+    "parameters": [
+        {
+            "key": "env.MEMCACHED_MAX_MEMORY",
+            "label": "Max Memory (MB)",
+            "type": "integer",
+            "default": 64
+        }
+    ],
+    "tags": [
+        "cache",
+        "memcached",
+        "key-value"
+    ],
+    "provides": {
+        "cache": {
+            "engine": "memcached",
+            "version": "1.6",
+            "protocol": "memcached",
+            "port": 11211
+        }
+    },
+    "env_vars": {
+        "configurable": [
+            "MEMCACHED_MAX_MEMORY"
+        ],
+        "fixed": {}
+    }
+}
