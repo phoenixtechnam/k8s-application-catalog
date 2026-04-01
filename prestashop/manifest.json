@@ -50,15 +50,15 @@
     },
     "volumes": [
         {
-            "name": "prestashop-data",
-            "mount_path": "/var/www/html",
-            "default_size": "20Gi",
+            "local_path": "applications/prestashop/data",
+            "container_path": "/var/www/html",
+            "size_megabytes": 20480,
             "description": "PrestaShop application data"
         },
         {
-            "name": "prestashop-database",
-            "mount_path": "/var/lib/mysql",
-            "default_size": "10Gi",
+            "local_path": "applications/prestashop/database",
+            "container_path": "/var/lib/mysql",
+            "size_megabytes": 10240,
             "description": "MariaDB data directory"
         }
     ],

@@ -300,19 +300,19 @@
             "description": "Persistent volumes this entry needs",
             "items": {
                 "type": "object",
-                "required": ["name", "mount_path", "default_size"],
+                "required": ["local_path", "container_path", "size_megabytes"],
                 "properties": {
-                    "name": {
+                    "local_path": {
                         "type": "string",
-                        "pattern": "^[a-z0-9-]+$"
+                        "minLength": 1
                     },
-                    "mount_path": {
+                    "container_path": {
                         "type": "string",
                         "pattern": "^/"
                     },
-                    "default_size": {
-                        "type": "string",
-                        "pattern": "^[0-9]+(Mi|Gi)$"
+                    "size_megabytes": {
+                        "type": "integer",
+                        "minimum": 0
                     },
                     "description": {
                         "type": "string"

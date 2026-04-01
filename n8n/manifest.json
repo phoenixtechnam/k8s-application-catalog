@@ -50,15 +50,15 @@
     },
     "volumes": [
         {
-            "name": "n8n-data",
-            "mount_path": "/home/node/.n8n",
-            "default_size": "5Gi",
+            "local_path": "applications/n8n/data",
+            "container_path": "/home/node/.n8n",
+            "size_megabytes": 5120,
             "description": "n8n workflow data and credentials"
         },
         {
-            "name": "n8n-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "applications/n8n/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "PostgreSQL data directory"
         }
     ],

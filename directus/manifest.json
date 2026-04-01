@@ -48,21 +48,21 @@
     },
     "volumes": [
         {
-            "name": "directus-uploads",
-            "mount_path": "/directus/uploads",
-            "default_size": "10Gi",
+            "local_path": "applications/directus/uploads",
+            "container_path": "/directus/uploads",
+            "size_megabytes": 10240,
             "description": "Directus file uploads"
         },
         {
-            "name": "directus-extensions",
-            "mount_path": "/directus/extensions",
-            "default_size": "1Gi",
+            "local_path": "applications/directus/extensions",
+            "container_path": "/directus/extensions",
+            "size_megabytes": 1024,
             "description": "Directus custom extensions"
         },
         {
-            "name": "directus-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "applications/directus/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "PostgreSQL database storage"
         }
     ],

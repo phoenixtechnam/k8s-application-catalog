@@ -50,9 +50,9 @@
     },
     "volumes": [
         {
-            "name": "wikijs-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "applications/wiki-js/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "PostgreSQL data directory"
         }
     ],

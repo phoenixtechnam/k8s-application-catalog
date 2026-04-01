@@ -32,9 +32,9 @@
     },
     "volumes": [
         {
-            "name": "data",
-            "mount_path": "/var/lib/mysql",
-            "default_size": "5Gi",
+            "local_path": "databases/mysql-90",
+            "container_path": "/var/lib/mysql",
+            "size_megabytes": 5120,
             "description": "Database data"
         }
     ],

@@ -39,9 +39,9 @@
     },
     "volumes": [
         {
-            "name": "data",
-            "mount_path": "/usr/local/apache2/htdocs",
-            "default_size": "5Gi",
+            "local_path": "website_files",
+            "container_path": "/usr/local/apache2/htdocs",
+            "size_megabytes": 5120,
             "description": "Static files"
         }
     ],

@@ -65,15 +65,15 @@
     },
     "volumes": [
         {
-            "name": "gitea-data",
-            "mount_path": "/data",
-            "default_size": "10Gi",
+            "local_path": "applications/gitea/data",
+            "container_path": "/data",
+            "size_megabytes": 10240,
             "description": "Gitea repositories and data"
         },
         {
-            "name": "gitea-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "applications/gitea/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "PostgreSQL data directory"
         }
     ],

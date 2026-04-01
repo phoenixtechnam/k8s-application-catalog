@@ -50,15 +50,15 @@
     },
     "volumes": [
         {
-            "name": "bookstack-config",
-            "mount_path": "/config",
-            "default_size": "2Gi",
+            "local_path": "applications/bookstack/config",
+            "container_path": "/config",
+            "size_megabytes": 2048,
             "description": "BookStack configuration and uploads"
         },
         {
-            "name": "bookstack-database",
-            "mount_path": "/var/lib/mysql",
-            "default_size": "5Gi",
+            "local_path": "applications/bookstack/database",
+            "container_path": "/var/lib/mysql",
+            "size_megabytes": 5120,
             "description": "MariaDB data directory"
         }
     ],

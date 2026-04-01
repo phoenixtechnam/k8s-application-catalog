@@ -47,21 +47,21 @@
     },
     "volumes": [
         {
-            "name": "invoiceninja-public-files",
-            "mount_path": "/var/www/app/public",
-            "default_size": "5Gi",
+            "local_path": "applications/invoiceninja/public",
+            "container_path": "/var/www/app/public",
+            "size_megabytes": 5120,
             "description": "Public assets and generated files"
         },
         {
-            "name": "invoiceninja-storage",
-            "mount_path": "/var/www/app/storage",
-            "default_size": "5Gi",
+            "local_path": "applications/invoiceninja/storage",
+            "container_path": "/var/www/app/storage",
+            "size_megabytes": 5120,
             "description": "Application storage (invoices, logs, cache)"
         },
         {
-            "name": "invoiceninja-database",
-            "mount_path": "/var/lib/mysql",
-            "default_size": "5Gi",
+            "local_path": "applications/invoiceninja/database",
+            "container_path": "/var/lib/mysql",
+            "size_megabytes": 5120,
             "description": "MariaDB database storage"
         }
     ],

@@ -70,15 +70,15 @@
     },
     "volumes": [
         {
-            "name": "wordpress-content",
-            "mount_path": "/var/www/html/wp-content",
-            "default_size": "10Gi",
+            "local_path": "applications/wordpress/content",
+            "container_path": "/var/www/html/wp-content",
+            "size_megabytes": 10240,
             "description": "Themes, plugins, uploads, and media files"
         },
         {
-            "name": "wordpress-database",
-            "mount_path": "/var/lib/mysql",
-            "default_size": "5Gi",
+            "local_path": "applications/wordpress/database",
+            "container_path": "/var/lib/mysql",
+            "size_megabytes": 5120,
             "description": "MariaDB data directory"
         }
     ],

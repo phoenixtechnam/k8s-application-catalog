@@ -62,15 +62,15 @@
     },
     "volumes": [
         {
-            "name": "plausible-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "applications/plausible/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "PostgreSQL data directory"
         },
         {
-            "name": "plausible-clickhouse",
-            "mount_path": "/var/lib/clickhouse",
-            "default_size": "10Gi",
+            "local_path": "applications/plausible/clickhouse",
+            "container_path": "/var/lib/clickhouse",
+            "size_megabytes": 10240,
             "description": "ClickHouse data directory"
         }
     ],

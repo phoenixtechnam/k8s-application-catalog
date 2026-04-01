@@ -70,21 +70,21 @@
     },
     "volumes": [
         {
-            "name": "moodle-data",
-            "mount_path": "/bitnami/moodle",
-            "default_size": "20Gi",
+            "local_path": "applications/moodle-bitnami/data",
+            "container_path": "/bitnami/moodle",
+            "size_megabytes": 20480,
             "description": "Moodle application data, uploaded files, and course content"
         },
         {
-            "name": "moodle-user-data",
-            "mount_path": "/bitnami/moodledata",
-            "default_size": "20Gi",
+            "local_path": "applications/moodle-bitnami/userdata",
+            "container_path": "/bitnami/moodledata",
+            "size_megabytes": 20480,
             "description": "Moodle data directory (filedir, cache, sessions)"
         },
         {
-            "name": "moodle-database",
-            "mount_path": "/bitnami/mariadb",
-            "default_size": "10Gi",
+            "local_path": "applications/moodle-bitnami/database",
+            "container_path": "/bitnami/mariadb",
+            "size_megabytes": 10240,
             "description": "MariaDB data directory"
         }
     ],

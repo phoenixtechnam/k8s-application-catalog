@@ -32,9 +32,9 @@
     },
     "volumes": [
         {
-            "name": "data",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "databases/postgresql-16",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "Database data"
         }
     ],

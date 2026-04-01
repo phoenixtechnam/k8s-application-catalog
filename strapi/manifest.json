@@ -47,15 +47,15 @@
     },
     "volumes": [
         {
-            "name": "strapi-data",
-            "mount_path": "/opt/app",
-            "default_size": "5Gi",
+            "local_path": "applications/strapi/data",
+            "container_path": "/opt/app",
+            "size_megabytes": 5120,
             "description": "Strapi application data"
         },
         {
-            "name": "strapi-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "applications/strapi/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "PostgreSQL database storage"
         }
     ],

@@ -39,9 +39,9 @@
     },
     "volumes": [
         {
-            "name": "data",
-            "mount_path": "/app",
-            "default_size": "5Gi",
+            "local_path": "runtimes/rust-stable",
+            "container_path": "/app",
+            "size_megabytes": 5120,
             "description": "Application directory"
         }
     ],

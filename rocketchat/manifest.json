@@ -50,15 +50,15 @@
     },
     "volumes": [
         {
-            "name": "rocketchat-uploads",
-            "mount_path": "/app/uploads",
-            "default_size": "10Gi",
+            "local_path": "applications/rocketchat/uploads",
+            "container_path": "/app/uploads",
+            "size_megabytes": 10240,
             "description": "Rocket.Chat file uploads"
         },
         {
-            "name": "rocketchat-database",
-            "mount_path": "/data/db",
-            "default_size": "10Gi",
+            "local_path": "applications/rocketchat/database",
+            "container_path": "/data/db",
+            "size_megabytes": 10240,
             "description": "MongoDB data directory"
         }
     ],

@@ -38,9 +38,9 @@
     },
     "volumes": [
         {
-            "name": "vaultwarden-data",
-            "mount_path": "/data",
-            "default_size": "1Gi",
+            "local_path": "applications/vaultwarden",
+            "container_path": "/data",
+            "size_megabytes": 1024,
             "description": "Vaultwarden data and SQLite database"
         }
     ],

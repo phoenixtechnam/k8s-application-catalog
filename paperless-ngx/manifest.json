@@ -58,27 +58,27 @@
     },
     "volumes": [
         {
-            "name": "paperless-data",
-            "mount_path": "/usr/src/paperless/data",
-            "default_size": "5Gi",
+            "local_path": "applications/paperless-ngx/data",
+            "container_path": "/usr/src/paperless/data",
+            "size_megabytes": 5120,
             "description": "Paperless application data and index"
         },
         {
-            "name": "paperless-media",
-            "mount_path": "/usr/src/paperless/media",
-            "default_size": "20Gi",
+            "local_path": "applications/paperless-ngx/media",
+            "container_path": "/usr/src/paperless/media",
+            "size_megabytes": 20480,
             "description": "Stored and processed documents"
         },
         {
-            "name": "paperless-consume",
-            "mount_path": "/usr/src/paperless/consume",
-            "default_size": "5Gi",
+            "local_path": "applications/paperless-ngx/consume",
+            "container_path": "/usr/src/paperless/consume",
+            "size_megabytes": 5120,
             "description": "Consumption directory for incoming documents"
         },
         {
-            "name": "paperless-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "5Gi",
+            "local_path": "applications/paperless-ngx/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 5120,
             "description": "PostgreSQL database storage"
         }
     ],

@@ -50,15 +50,15 @@
     },
     "volumes": [
         {
-            "name": "matomo-data",
-            "mount_path": "/var/www/html",
-            "default_size": "5Gi",
+            "local_path": "applications/matomo/data",
+            "container_path": "/var/www/html",
+            "size_megabytes": 5120,
             "description": "Matomo application data"
         },
         {
-            "name": "matomo-database",
-            "mount_path": "/var/lib/mysql",
-            "default_size": "5Gi",
+            "local_path": "applications/matomo/database",
+            "container_path": "/var/lib/mysql",
+            "size_megabytes": 5120,
             "description": "MariaDB data directory"
         }
     ],

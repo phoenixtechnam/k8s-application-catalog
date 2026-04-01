@@ -39,9 +39,9 @@
     },
     "volumes": [
         {
-            "name": "data",
-            "mount_path": "/var/www/html",
-            "default_size": "5Gi",
+            "local_path": "website_files",
+            "container_path": "/var/www/html",
+            "size_megabytes": 5120,
             "description": "Static files"
         }
     ],

@@ -32,9 +32,9 @@
     },
     "volumes": [
         {
-            "name": "data",
-            "mount_path": "/data/db",
-            "default_size": "10Gi",
+            "local_path": "databases/mongodb-7",
+            "container_path": "/data/db",
+            "size_megabytes": 10240,
             "description": "Database data"
         }
     ],

@@ -62,15 +62,15 @@
     },
     "volumes": [
         {
-            "name": "discourse-data",
-            "mount_path": "/shared",
-            "default_size": "20Gi",
+            "local_path": "applications/discourse/data",
+            "container_path": "/shared",
+            "size_megabytes": 20480,
             "description": "Discourse shared data and uploads"
         },
         {
-            "name": "discourse-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "10Gi",
+            "local_path": "applications/discourse/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 10240,
             "description": "PostgreSQL data directory"
         }
     ],

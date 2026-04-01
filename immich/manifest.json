@@ -74,21 +74,21 @@
     },
     "volumes": [
         {
-            "name": "immich-uploads",
-            "mount_path": "/usr/src/app/upload",
-            "default_size": "100Gi",
+            "local_path": "applications/immich/uploads",
+            "container_path": "/usr/src/app/upload",
+            "size_megabytes": 102400,
             "description": "Immich photo and video uploads"
         },
         {
-            "name": "immich-database",
-            "mount_path": "/var/lib/postgresql/data",
-            "default_size": "10Gi",
+            "local_path": "applications/immich/database",
+            "container_path": "/var/lib/postgresql/data",
+            "size_megabytes": 10240,
             "description": "PostgreSQL data directory"
         },
         {
-            "name": "immich-ml-cache",
-            "mount_path": "/cache",
-            "default_size": "5Gi",
+            "local_path": "applications/immich/ml-cache",
+            "container_path": "/cache",
+            "size_megabytes": 5120,
             "description": "Machine learning model cache"
         }
     ],

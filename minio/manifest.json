@@ -37,9 +37,9 @@
     },
     "volumes": [
         {
-            "name": "data",
-            "mount_path": "/data",
-            "default_size": "20Gi",
+            "local_path": "services/minio",
+            "container_path": "/data",
+            "size_megabytes": 20480,
             "description": "Object storage"
         }
     ],
