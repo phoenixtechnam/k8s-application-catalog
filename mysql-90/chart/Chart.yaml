@@ -1,6 +1,0 @@
-apiVersion: v2
-name: mysql-90
-description: MySQL 9.0 Innovation release — for clients who specifically need MySQL over MariaDB
-type: application
-version: 0.1.0
-appVersion: "9.0"

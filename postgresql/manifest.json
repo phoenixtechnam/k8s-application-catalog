@@ -1,9 +1,9 @@
 {
-    "name": "PostgreSQL 17",
-    "code": "postgresql-17",
+    "name": "PostgreSQL",
+    "code": "postgresql",
     "type": "database",
     "version": "17",
-    "description": "PostgreSQL 17 — current stable release with performance improvements",
+    "description": "PostgreSQL — dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "postgresql",
@@ -13,7 +13,7 @@
     "deployment_strategy": "statefulset",
     "components": [
         {
-            "name": "postgresql-17",
+            "name": "postgresql",
             "type": "statefulset",
             "image": "postgres:17-alpine",
             "ports": [
@@ -32,7 +32,7 @@
     },
     "volumes": [
         {
-            "local_path": "databases/postgresql-17",
+            "local_path": "databases/postgresql",
             "container_path": "/var/lib/postgresql/data",
             "size_megabytes": 5120,
             "description": "Database data"
@@ -104,5 +104,49 @@
             "POSTGRES_PASSWORD"
         ],
         "fixed": {}
-    }
+    },
+    "supportedVersions": [
+        {
+            "version": "16",
+            "isDefault": false,
+            "upgradeFrom": [],
+            "minPlan": "business",
+            "components": [
+                {
+                    "name": "postgresql",
+                    "image": "postgres:16-alpine"
+                }
+            ],
+            "provides": {
+                "database": {
+                    "engine": "postgresql",
+                    "version": "16",
+                    "protocol": "postgresql",
+                    "port": 5432
+                }
+            }
+        },
+        {
+            "version": "17",
+            "isDefault": true,
+            "upgradeFrom": [
+                "16"
+            ],
+            "minPlan": "starter",
+            "components": [
+                {
+                    "name": "postgresql",
+                    "image": "postgres:17-alpine"
+                }
+            ],
+            "provides": {
+                "database": {
+                    "engine": "postgresql",
+                    "version": "17",
+                    "protocol": "postgresql",
+                    "port": 5432
+                }
+            }
+        }
+    ]
 }

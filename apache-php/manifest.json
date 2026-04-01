@@ -1,21 +1,21 @@
 {
-    "name": "NGINX + PHP 8.4",
-    "code": "nginx-php84",
+    "name": "Apache + PHP",
+    "code": "apache-php",
     "type": "runtime",
     "version": "8.4",
-    "description": "NGINX web server with PHP-FPM 8.4 for modern PHP applications",
+    "description": "Apache HTTP Server with mod_php for traditional PHP hosting with .htaccess support",
     "category": "runtime",
     "min_plan": "starter",
     "runtime": "php",
-    "web_server": "nginx",
+    "web_server": "apache",
     "image": null,
     "has_dockerfile": true,
     "deployment_strategy": "deployment",
     "components": [
         {
-            "name": "nginx-php84",
+            "name": "apache-php",
             "type": "deployment",
-            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php84:8.4",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/apache-php:8.4",
             "ports": [
                 {
                     "port": 80,
@@ -56,7 +56,7 @@
         }
     },
     "health_check": {
-        "path": "/health",
+        "path": "/",
         "command": null,
         "port": 80,
         "initial_delay_seconds": 30,
@@ -72,17 +72,13 @@
             "key": "env.PHP_UPLOAD_MAX_FILESIZE",
             "label": "Php Upload Max Filesize",
             "type": "string"
-        },
-        {
-            "key": "env.PHP_MAX_EXECUTION_TIME",
-            "label": "Php Max Execution Time",
-            "type": "string"
         }
     ],
     "tags": [
         "php",
-        "nginx",
-        "web"
+        "apache",
+        "web",
+        "htaccess"
     ],
     "services": {
         "database": {
@@ -109,9 +105,34 @@
     "env_vars": {
         "configurable": [
             "PHP_MEMORY_LIMIT",
-            "PHP_UPLOAD_MAX_FILESIZE",
-            "PHP_MAX_EXECUTION_TIME"
+            "PHP_UPLOAD_MAX_FILESIZE"
         ],
         "fixed": {}
-    }
+    },
+    "supportedVersions": [
+        {
+            "version": "8.3",
+            "isDefault": false,
+            "upgradeFrom": [],
+            "components": [
+                {
+                    "name": "apache-php",
+                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/apache-php:8.3"
+                }
+            ]
+        },
+        {
+            "version": "8.4",
+            "isDefault": true,
+            "upgradeFrom": [
+                "8.3"
+            ],
+            "components": [
+                {
+                    "name": "apache-php",
+                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/apache-php:8.4"
+                }
+            ]
+        }
+    ]
 }

@@ -628,7 +628,42 @@
                         },
                         "additionalProperties": false
                     },
-                    "isDefault": { "type": "boolean", "default": false }
+                    "isDefault": { "type": "boolean", "default": false },
+                    "resources": {
+                        "type": "object",
+                        "description": "Version-specific resource overrides (merged with base resources)",
+                        "properties": {
+                            "default": {
+                                "type": "object",
+                                "properties": {
+                                    "cpu": { "type": "string" },
+                                    "memory": { "type": "string" },
+                                    "storage": { "type": "string" }
+                                },
+                                "additionalProperties": false
+                            },
+                            "minimum": {
+                                "type": "object",
+                                "properties": {
+                                    "cpu": { "type": "string" },
+                                    "memory": { "type": "string" },
+                                    "storage": { "type": "string" }
+                                },
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "minPlan": { "type": "string", "enum": ["starter", "business", "premium"] },
+                    "provides": {
+                        "type": "object",
+                        "description": "Version-specific provider overrides"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "description": "Additional tags for this specific version",
+                        "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+                    }
                 },
                 "additionalProperties": false
             }

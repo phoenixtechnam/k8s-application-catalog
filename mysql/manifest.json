@@ -1,9 +1,9 @@
 {
-    "name": "MySQL 8.4",
-    "code": "mysql-84",
+    "name": "MySQL",
+    "code": "mysql",
     "type": "database",
-    "version": "8.4",
-    "description": "MySQL 8.4 LTS — dedicated instance for applications requiring MySQL specifically",
+    "version": "9.0",
+    "description": "MySQL — dedicated instance for applications requiring MySQL specifically",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mysql",
@@ -13,7 +13,7 @@
     "deployment_strategy": "statefulset",
     "components": [
         {
-            "name": "mysql-84",
+            "name": "mysql",
             "type": "statefulset",
             "image": "mysql:8.4",
             "ports": [
@@ -32,7 +32,7 @@
     },
     "volumes": [
         {
-            "local_path": "databases/mysql-84",
+            "local_path": "databases/mysql",
             "container_path": "/var/lib/mysql",
             "size_megabytes": 5120,
             "description": "Database data"
@@ -105,5 +105,52 @@
             "MYSQL_PASSWORD"
         ],
         "fixed": {}
-    }
+    },
+    "supportedVersions": [
+        {
+            "version": "8.4",
+            "isDefault": true,
+            "upgradeFrom": [],
+            "components": [
+                {
+                    "name": "mysql",
+                    "image": "mysql:8.4"
+                }
+            ],
+            "provides": {
+                "database": {
+                    "engine": "mysql",
+                    "version": "8.4",
+                    "protocol": "mysql",
+                    "port": 3306
+                }
+            }
+        },
+        {
+            "version": "9.0",
+            "isDefault": false,
+            "upgradeFrom": [
+                "8.4"
+            ],
+            "components": [
+                {
+                    "name": "mysql",
+                    "image": "mysql:9.0"
+                }
+            ],
+            "resources": {
+                "default": {
+                    "memory": "512Mi"
+                }
+            },
+            "provides": {
+                "database": {
+                    "engine": "mysql",
+                    "version": "9.0",
+                    "protocol": "mysql",
+                    "port": 3306
+                }
+            }
+        }
+    ]
 }

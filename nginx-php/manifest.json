@@ -1,9 +1,9 @@
 {
-    "name": "NGINX + PHP 8.3",
-    "code": "nginx-php83",
+    "name": "NGINX + PHP",
+    "code": "nginx-php",
     "type": "runtime",
-    "version": "8.3",
-    "description": "NGINX web server with PHP-FPM 8.3 for modern PHP applications",
+    "version": "8.4",
+    "description": "NGINX web server with PHP-FPM for modern PHP applications",
     "category": "runtime",
     "min_plan": "starter",
     "runtime": "php",
@@ -13,9 +13,9 @@
     "deployment_strategy": "deployment",
     "components": [
         {
-            "name": "nginx-php83",
+            "name": "nginx-php",
             "type": "deployment",
-            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php83:8.3",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php:8.4",
             "ports": [
                 {
                     "port": 80,
@@ -113,5 +113,31 @@
             "PHP_MAX_EXECUTION_TIME"
         ],
         "fixed": {}
-    }
+    },
+    "supportedVersions": [
+        {
+            "version": "8.3",
+            "isDefault": false,
+            "upgradeFrom": [],
+            "components": [
+                {
+                    "name": "nginx-php",
+                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php:8.3"
+                }
+            ]
+        },
+        {
+            "version": "8.4",
+            "isDefault": true,
+            "upgradeFrom": [
+                "8.3"
+            ],
+            "components": [
+                {
+                    "name": "nginx-php",
+                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php:8.4"
+                }
+            ]
+        }
+    ]
 }

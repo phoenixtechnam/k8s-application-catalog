@@ -1,9 +1,9 @@
 {
-    "name": "Node.js 20 LTS",
-    "code": "node20-lts",
+    "name": "Node.js",
+    "code": "nodejs",
     "type": "runtime",
-    "version": "20",
-    "description": "Node.js 20 LTS runtime for server-side JavaScript applications",
+    "version": "22",
+    "description": "Node.js runtime for server-side JavaScript applications",
     "category": "runtime",
     "min_plan": "starter",
     "runtime": "node",
@@ -13,9 +13,9 @@
     "deployment_strategy": "deployment",
     "components": [
         {
-            "name": "node20-lts",
+            "name": "nodejs",
             "type": "deployment",
-            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/node20-lts:20",
+            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nodejs:22",
             "ports": [
                 {
                     "port": 3000,
@@ -39,7 +39,7 @@
     },
     "volumes": [
         {
-            "local_path": "runtimes/node20-lts",
+            "local_path": "runtimes/nodejs",
             "container_path": "/app",
             "size_megabytes": 5120,
             "description": "Application directory"
@@ -77,8 +77,7 @@
     "tags": [
         "nodejs",
         "javascript",
-        "runtime",
-        "lts"
+        "runtime"
     ],
     "services": {
         "database": {
@@ -110,5 +109,34 @@
         "fixed": {
             "PORT": "3000"
         }
-    }
+    },
+    "supportedVersions": [
+        {
+            "version": "20",
+            "isDefault": false,
+            "upgradeFrom": [],
+            "tags": [
+                "lts"
+            ],
+            "components": [
+                {
+                    "name": "nodejs",
+                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nodejs:20"
+                }
+            ]
+        },
+        {
+            "version": "22",
+            "isDefault": true,
+            "upgradeFrom": [
+                "20"
+            ],
+            "components": [
+                {
+                    "name": "nodejs",
+                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nodejs:22"
+                }
+            ]
+        }
+    ]
 }

@@ -1,6 +1,0 @@
-apiVersion: v2
-name: mariadb-106
-description: MariaDB 10.6 LTS — dedicated instance for client databases
-type: application
-version: 0.1.0
-appVersion: "10.6"

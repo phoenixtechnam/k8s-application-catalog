@@ -1,6 +1,0 @@
-apiVersion: v2
-name: node20-lts
-description: Node.js 20 LTS runtime for server-side JavaScript applications
-type: application
-version: 0.1.0
-appVersion: "20"
