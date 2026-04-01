@@ -1,10 +1,10 @@
 {
     "name": "Static Website (via NGINX)",
     "code": "static-nginx",
-    "type": "runtime",
+    "type": "static",
     "version": "1.27",
     "description": "NGINX serving static HTML/CSS/JS sites",
-    "category": "runtime",
+    "category": "static",
     "min_plan": "starter",
     "runtime": "static",
     "web_server": "nginx",

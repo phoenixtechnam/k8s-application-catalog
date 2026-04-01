@@ -35,7 +35,7 @@
         "type": {
             "type": "string",
             "description": "Entry type — determines which additional fields are required",
-            "enum": ["application", "runtime", "database", "service"]
+            "enum": ["application", "runtime", "database", "service", "static"]
         },
         "version": {
             "type": "string",
@@ -82,6 +82,7 @@
                 "database",
                 "cache",
                 "storage",
+                "static",
                 "other"
             ]
         },
@@ -670,6 +671,17 @@
             },
             "then": {
                 "required": ["runtime", "has_dockerfile", "min_plan", "deployment_strategy", "provides"]
+            }
+        },
+        {
+            "if": {
+                "properties": { "type": { "const": "static" } }
+            },
+            "then": {
+                "required": ["runtime", "web_server", "has_dockerfile", "min_plan", "deployment_strategy"],
+                "properties": {
+                    "deployment_strategy": { "const": "deployment" }
+                }
             }
         }
     ],

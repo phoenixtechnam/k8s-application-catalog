@@ -1,10 +1,10 @@
 {
     "name": "Static Website (via Apache)",
     "code": "static-apache",
-    "type": "runtime",
+    "type": "static",
     "version": "2.4",
     "description": "Apache HTTP Server serving static HTML/CSS/JS sites",
-    "category": "runtime",
+    "category": "static",
     "min_plan": "starter",
     "runtime": "static",
     "web_server": "apache",
