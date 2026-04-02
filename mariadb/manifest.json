@@ -61,20 +61,7 @@
         "initial_delay_seconds": 60,
         "period_seconds": 30
     },
-    "parameters": [
-        {
-            "key": "auth.database",
-            "label": "Database Name",
-            "type": "string",
-            "required": true
-        },
-        {
-            "key": "auth.username",
-            "label": "Username",
-            "type": "string",
-            "required": true
-        }
-    ],
+    "parameters": [],
     "tags": [
         "database",
         "mariadb",
@@ -89,21 +76,14 @@
             "protocol": "mysql",
             "port": 3306,
             "credentials": {
-                "root_env": "MARIADB_ROOT_PASSWORD",
-                "user_env": "MARIADB_USER",
-                "password_env": "MARIADB_PASSWORD",
-                "database_env": "MARIADB_DATABASE"
+                "root_env": "MARIADB_ROOT_PASSWORD"
             }
         }
     },
     "env_vars": {
-        "configurable": [
-            "MARIADB_DATABASE",
-            "MARIADB_USER"
-        ],
+        "configurable": [],
         "generated": [
-            "MARIADB_ROOT_PASSWORD",
-            "MARIADB_PASSWORD"
+            "MARIADB_ROOT_PASSWORD"
         ],
         "fixed": {
             "MARIADB_AUTO_UPGRADE": "1"

@@ -502,9 +502,10 @@
                         "port": { "type": "integer", "minimum": 1, "maximum": 65535 },
                         "credentials": {
                             "type": "object",
-                            "required": ["root_env", "user_env", "password_env", "database_env"],
+                            "required": ["root_env"],
                             "properties": {
                                 "root_env": { "type": "string" },
+                                "username_env": { "type": "string" },
                                 "user_env": { "type": "string" },
                                 "password_env": { "type": "string" },
                                 "database_env": { "type": "string" }

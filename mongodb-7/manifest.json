@@ -61,14 +61,7 @@
         "initial_delay_seconds": 30,
         "period_seconds": 30
     },
-    "parameters": [
-        {
-            "key": "auth.database",
-            "label": "Database Name",
-            "type": "string",
-            "required": true
-        }
-    ],
+    "parameters": [],
     "tags": [
         "database",
         "mongodb",
@@ -82,17 +75,13 @@
             "protocol": "mongodb",
             "port": 27017,
             "credentials": {
-                "root_env": "MONGO_INITDB_ROOT_USERNAME",
-                "user_env": "MONGO_INITDB_ROOT_USERNAME",
-                "password_env": "MONGO_INITDB_ROOT_PASSWORD",
-                "database_env": "MONGO_INITDB_DATABASE"
+                "root_env": "MONGO_INITDB_ROOT_PASSWORD",
+                "username_env": "MONGO_INITDB_ROOT_USERNAME"
             }
         }
     },
     "env_vars": {
-        "configurable": [
-            "MONGO_INITDB_DATABASE"
-        ],
+        "configurable": [],
         "generated": [
             "MONGO_INITDB_ROOT_USERNAME",
             "MONGO_INITDB_ROOT_PASSWORD"

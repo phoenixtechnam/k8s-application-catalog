@@ -62,20 +62,7 @@
         "initial_delay_seconds": 60,
         "period_seconds": 30
     },
-    "parameters": [
-        {
-            "key": "auth.database",
-            "label": "Database Name",
-            "type": "string",
-            "required": true
-        },
-        {
-            "key": "auth.username",
-            "label": "Username",
-            "type": "string",
-            "required": true
-        }
-    ],
+    "parameters": [],
     "tags": [
         "database",
         "mysql",
@@ -88,21 +75,14 @@
             "protocol": "mysql",
             "port": 3306,
             "credentials": {
-                "root_env": "MYSQL_ROOT_PASSWORD",
-                "user_env": "MYSQL_USER",
-                "password_env": "MYSQL_PASSWORD",
-                "database_env": "MYSQL_DATABASE"
+                "root_env": "MYSQL_ROOT_PASSWORD"
             }
         }
     },
     "env_vars": {
-        "configurable": [
-            "MYSQL_DATABASE",
-            "MYSQL_USER"
-        ],
+        "configurable": [],
         "generated": [
-            "MYSQL_ROOT_PASSWORD",
-            "MYSQL_PASSWORD"
+            "MYSQL_ROOT_PASSWORD"
         ],
         "fixed": {}
     },

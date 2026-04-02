@@ -61,20 +61,7 @@
         "initial_delay_seconds": 30,
         "period_seconds": 30
     },
-    "parameters": [
-        {
-            "key": "auth.database",
-            "label": "Database Name",
-            "type": "string",
-            "required": true
-        },
-        {
-            "key": "auth.username",
-            "label": "Username",
-            "type": "string",
-            "required": true
-        }
-    ],
+    "parameters": [],
     "tags": [
         "database",
         "postgresql",
@@ -88,18 +75,12 @@
             "protocol": "postgresql",
             "port": 5432,
             "credentials": {
-                "root_env": "POSTGRES_PASSWORD",
-                "user_env": "POSTGRES_USER",
-                "password_env": "POSTGRES_PASSWORD",
-                "database_env": "POSTGRES_DB"
+                "root_env": "POSTGRES_PASSWORD"
             }
         }
     },
     "env_vars": {
-        "configurable": [
-            "POSTGRES_DB",
-            "POSTGRES_USER"
-        ],
+        "configurable": [],
         "generated": [
             "POSTGRES_PASSWORD"
         ],
