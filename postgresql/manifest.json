@@ -10,11 +10,11 @@
     "web_server": null,
     "image": "postgres:17-alpine",
     "has_dockerfile": false,
-    "deployment_strategy": "statefulset",
+    "deployment_strategy": "deployment",
     "components": [
         {
             "name": "postgresql",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "postgres:17-alpine",
             "ports": [
                 {

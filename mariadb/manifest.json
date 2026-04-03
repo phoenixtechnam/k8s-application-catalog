@@ -10,11 +10,11 @@
     "web_server": null,
     "image": "mariadb:11.4",
     "has_dockerfile": false,
-    "deployment_strategy": "statefulset",
+    "deployment_strategy": "deployment",
     "components": [
         {
             "name": "mariadb",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "mariadb:11.4",
             "ports": [
                 {

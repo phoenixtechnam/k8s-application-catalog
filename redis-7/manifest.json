@@ -10,11 +10,11 @@
     "web_server": null,
     "image": "redis:7-alpine",
     "has_dockerfile": false,
-    "deployment_strategy": "statefulset",
+    "deployment_strategy": "deployment",
     "components": [
         {
             "name": "redis-7",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "redis:7-alpine",
             "ports": [
                 {

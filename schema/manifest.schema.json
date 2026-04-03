@@ -693,7 +693,7 @@
             "then": {
                 "required": ["runtime", "has_dockerfile", "min_plan", "deployment_strategy", "provides"],
                 "properties": {
-                    "deployment_strategy": { "const": "statefulset" }
+                    "deployment_strategy": { "const": "deployment" }
                 }
             }
         },

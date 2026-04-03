@@ -10,11 +10,11 @@
     "web_server": null,
     "image": "mongo:7.0",
     "has_dockerfile": false,
-    "deployment_strategy": "statefulset",
+    "deployment_strategy": "deployment",
     "components": [
         {
             "name": "mongodb-7",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "mongo:7.0",
             "ports": [
                 {
