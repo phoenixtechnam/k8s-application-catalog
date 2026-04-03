@@ -50,32 +50,29 @@
         {
             "local_path": "applications/directus/uploads",
             "container_path": "/directus/uploads",
-            "size_megabytes": 10240,
             "description": "Directus file uploads"
         },
         {
             "local_path": "applications/directus/extensions",
             "container_path": "/directus/extensions",
-            "size_megabytes": 1024,
             "description": "Directus custom extensions"
         },
         {
             "local_path": "applications/directus/database",
             "container_path": "/var/lib/postgresql/data",
-            "size_megabytes": 5120,
             "description": "PostgreSQL database storage"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.50",
-            "memory": "512Mi",
-            "storage": "16Gi"
-        },
         "minimum": {
             "cpu": "0.25",
             "memory": "256Mi",
             "storage": "6Gi"
+        },
+        "recommended": {
+            "cpu": "0.50",
+            "memory": "512Mi",
+            "storage": "16Gi"
         }
     },
     "health_check": {

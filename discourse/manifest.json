@@ -64,26 +64,24 @@
         {
             "local_path": "applications/discourse/data",
             "container_path": "/shared",
-            "size_megabytes": 20480,
             "description": "Discourse shared data and uploads"
         },
         {
             "local_path": "applications/discourse/database",
             "container_path": "/var/lib/postgresql/data",
-            "size_megabytes": 10240,
             "description": "PostgreSQL data directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "1.00",
-            "memory": "2Gi",
-            "storage": "30Gi"
-        },
         "minimum": {
             "cpu": "0.50",
             "memory": "1Gi",
             "storage": "15Gi"
+        },
+        "recommended": {
+            "cpu": "1.00",
+            "memory": "2Gi",
+            "storage": "30Gi"
         }
     },
     "health_check": {

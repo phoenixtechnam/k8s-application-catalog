@@ -113,27 +113,25 @@
         {
             "local_path": "applications/jitsi/config",
             "container_path": "/config",
-            "size_megabytes": 100,
             "description": "Prosody XMPP configuration and certificates"
         },
         {
             "local_path": "applications/jitsi/plugins",
             "container_path": "/prosody-plugins-custom",
-            "size_megabytes": 50,
             "description": "Custom Prosody plugins",
             "optional": true
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "2.00",
-            "memory": "4Gi",
-            "storage": "200Mi"
-        },
         "minimum": {
             "cpu": "1.00",
             "memory": "2Gi",
             "storage": "150Mi"
+        },
+        "recommended": {
+            "cpu": "2.00",
+            "memory": "4Gi",
+            "storage": "200Mi"
         }
     },
     "health_check": {

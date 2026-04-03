@@ -41,18 +41,17 @@
         {
             "local_path": "runtimes/java-21",
             "container_path": "/app",
-            "size_megabytes": 5120,
             "description": "Application directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.50",
-            "memory": "512Mi"
-        },
         "minimum": {
             "cpu": "0.10",
             "memory": "256Mi"
+        },
+        "recommended": {
+            "cpu": "0.50",
+            "memory": "512Mi"
         }
     },
     "health_check": {

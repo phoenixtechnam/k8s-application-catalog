@@ -32,14 +32,14 @@
     },
     "volumes": [],
     "resources": {
-        "default": {
-            "cpu": "0.10",
-            "memory": "128Mi"
-        },
         "minimum": {
             "cpu": "0.10",
             "memory": "128Mi",
             "storage": "1Gi"
+        },
+        "recommended": {
+            "cpu": "0.10",
+            "memory": "128Mi"
         }
     },
     "health_check": {

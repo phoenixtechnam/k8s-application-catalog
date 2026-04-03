@@ -52,26 +52,24 @@
         {
             "local_path": "applications/prestashop/data",
             "container_path": "/var/www/html",
-            "size_megabytes": 20480,
             "description": "PrestaShop application data"
         },
         {
             "local_path": "applications/prestashop/database",
             "container_path": "/var/lib/mysql",
-            "size_megabytes": 10240,
             "description": "MariaDB data directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.50",
-            "memory": "512Mi",
-            "storage": "30Gi"
-        },
         "minimum": {
             "cpu": "0.25",
             "memory": "256Mi",
             "storage": "10Gi"
+        },
+        "recommended": {
+            "cpu": "0.50",
+            "memory": "512Mi",
+            "storage": "30Gi"
         }
     },
     "health_check": {

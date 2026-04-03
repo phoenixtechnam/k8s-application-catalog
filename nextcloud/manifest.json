@@ -86,38 +86,34 @@
         {
             "local_path": "applications/nextcloud/data",
             "container_path": "/var/www/html/data",
-            "size_megabytes": 51200,
             "description": "User files, uploads, and shared data"
         },
         {
             "local_path": "applications/nextcloud/config",
             "container_path": "/var/www/html/config",
-            "size_megabytes": 100,
             "description": "Nextcloud configuration files"
         },
         {
             "local_path": "applications/nextcloud/apps",
             "container_path": "/var/www/html/custom_apps",
-            "size_megabytes": 1024,
             "description": "Installed Nextcloud apps"
         },
         {
             "local_path": "applications/nextcloud/database",
             "container_path": "/var/lib/mysql",
-            "size_megabytes": 5120,
             "description": "MariaDB data directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "1.00",
-            "memory": "1Gi",
-            "storage": "56Gi"
-        },
         "minimum": {
             "cpu": "0.50",
             "memory": "512Mi",
             "storage": "10Gi"
+        },
+        "recommended": {
+            "cpu": "1.00",
+            "memory": "1Gi",
+            "storage": "56Gi"
         }
     },
     "health_check": {

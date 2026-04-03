@@ -300,7 +300,7 @@
             "description": "Persistent volumes this entry needs",
             "items": {
                 "type": "object",
-                "required": ["local_path", "container_path", "size_megabytes"],
+                "required": ["local_path", "container_path"],
                 "properties": {
                     "local_path": {
                         "type": "string",
@@ -309,10 +309,6 @@
                     "container_path": {
                         "type": "string",
                         "pattern": "^/"
-                    },
-                    "size_megabytes": {
-                        "type": "integer",
-                        "minimum": 0
                     },
                     "description": {
                         "type": "string"
@@ -328,9 +324,9 @@
         "resources": {
             "type": "object",
             "description": "Resource allocation profiles",
-            "required": ["default", "minimum"],
+            "required": ["recommended", "minimum"],
             "properties": {
-                "default": {
+                "recommended": {
                     "type": "object",
                     "required": ["cpu", "memory"],
                     "properties": {
@@ -634,7 +630,7 @@
                         "type": "object",
                         "description": "Version-specific resource overrides (merged with base resources)",
                         "properties": {
-                            "default": {
+                            "recommended": {
                                 "type": "object",
                                 "properties": {
                                     "cpu": { "type": "string" },

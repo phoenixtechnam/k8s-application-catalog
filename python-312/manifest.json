@@ -41,18 +41,17 @@
         {
             "local_path": "runtimes/python-312",
             "container_path": "/app",
-            "size_megabytes": 5120,
             "description": "Application directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.25",
-            "memory": "256Mi"
-        },
         "minimum": {
             "cpu": "0.10",
             "memory": "128Mi"
+        },
+        "recommended": {
+            "cpu": "0.25",
+            "memory": "256Mi"
         }
     },
     "health_check": {

@@ -70,14 +70,14 @@
     },
     "volumes": [],
     "resources": {
-        "default": {
-            "cpu": "0.25",
-            "memory": "128Mi",
-            "storage": "0Mi"
-        },
         "minimum": {
             "cpu": "0.10",
             "memory": "64Mi",
+            "storage": "0Mi"
+        },
+        "recommended": {
+            "cpu": "0.25",
+            "memory": "128Mi",
             "storage": "0Mi"
         }
     },

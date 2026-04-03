@@ -60,38 +60,34 @@
         {
             "local_path": "applications/paperless-ngx/data",
             "container_path": "/usr/src/paperless/data",
-            "size_megabytes": 5120,
             "description": "Paperless application data and index"
         },
         {
             "local_path": "applications/paperless-ngx/media",
             "container_path": "/usr/src/paperless/media",
-            "size_megabytes": 20480,
             "description": "Stored and processed documents"
         },
         {
             "local_path": "applications/paperless-ngx/consume",
             "container_path": "/usr/src/paperless/consume",
-            "size_megabytes": 5120,
             "description": "Consumption directory for incoming documents"
         },
         {
             "local_path": "applications/paperless-ngx/database",
             "container_path": "/var/lib/postgresql/data",
-            "size_megabytes": 5120,
             "description": "PostgreSQL database storage"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "1.00",
-            "memory": "1Gi",
-            "storage": "35Gi"
-        },
         "minimum": {
             "cpu": "0.50",
             "memory": "512Mi",
             "storage": "15Gi"
+        },
+        "recommended": {
+            "cpu": "1.00",
+            "memory": "1Gi",
+            "storage": "35Gi"
         }
     },
     "health_check": {

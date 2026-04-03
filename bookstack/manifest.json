@@ -52,26 +52,24 @@
         {
             "local_path": "applications/bookstack/config",
             "container_path": "/config",
-            "size_megabytes": 2048,
             "description": "BookStack configuration and uploads"
         },
         {
             "local_path": "applications/bookstack/database",
             "container_path": "/var/lib/mysql",
-            "size_megabytes": 5120,
             "description": "MariaDB data directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.25",
-            "memory": "256Mi",
-            "storage": "7Gi"
-        },
         "minimum": {
             "cpu": "0.10",
             "memory": "128Mi",
             "storage": "3Gi"
+        },
+        "recommended": {
+            "cpu": "0.25",
+            "memory": "256Mi",
+            "storage": "7Gi"
         }
     },
     "health_check": {

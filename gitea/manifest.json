@@ -67,26 +67,24 @@
         {
             "local_path": "applications/gitea/data",
             "container_path": "/data",
-            "size_megabytes": 10240,
             "description": "Gitea repositories and data"
         },
         {
             "local_path": "applications/gitea/database",
             "container_path": "/var/lib/postgresql/data",
-            "size_megabytes": 5120,
             "description": "PostgreSQL data directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.50",
-            "memory": "512Mi",
-            "storage": "15Gi"
-        },
         "minimum": {
             "cpu": "0.25",
             "memory": "256Mi",
             "storage": "5Gi"
+        },
+        "recommended": {
+            "cpu": "0.50",
+            "memory": "512Mi",
+            "storage": "15Gi"
         }
     },
     "health_check": {

@@ -72,32 +72,29 @@
         {
             "local_path": "applications/moodle-bitnami/data",
             "container_path": "/bitnami/moodle",
-            "size_megabytes": 20480,
             "description": "Moodle application data, uploaded files, and course content"
         },
         {
             "local_path": "applications/moodle-bitnami/userdata",
             "container_path": "/bitnami/moodledata",
-            "size_megabytes": 20480,
             "description": "Moodle data directory (filedir, cache, sessions)"
         },
         {
             "local_path": "applications/moodle-bitnami/database",
             "container_path": "/bitnami/mariadb",
-            "size_megabytes": 10240,
             "description": "MariaDB data directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "1.00",
-            "memory": "2Gi",
-            "storage": "50Gi"
-        },
         "minimum": {
             "cpu": "0.50",
             "memory": "1Gi",
             "storage": "20Gi"
+        },
+        "recommended": {
+            "cpu": "1.00",
+            "memory": "2Gi",
+            "storage": "50Gi"
         }
     },
     "health_check": {

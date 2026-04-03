@@ -76,32 +76,29 @@
         {
             "local_path": "applications/immich/uploads",
             "container_path": "/usr/src/app/upload",
-            "size_megabytes": 102400,
             "description": "Immich photo and video uploads"
         },
         {
             "local_path": "applications/immich/database",
             "container_path": "/var/lib/postgresql/data",
-            "size_megabytes": 10240,
             "description": "PostgreSQL data directory"
         },
         {
             "local_path": "applications/immich/ml-cache",
             "container_path": "/cache",
-            "size_megabytes": 5120,
             "description": "Machine learning model cache"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "2.00",
-            "memory": "4Gi",
-            "storage": "115Gi"
-        },
         "minimum": {
             "cpu": "1.00",
             "memory": "2Gi",
             "storage": "50Gi"
+        },
+        "recommended": {
+            "cpu": "2.00",
+            "memory": "4Gi",
+            "storage": "115Gi"
         }
     },
     "health_check": {

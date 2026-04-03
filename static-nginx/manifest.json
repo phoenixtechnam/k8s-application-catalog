@@ -41,16 +41,15 @@
         {
             "local_path": "website_files",
             "container_path": "/var/www/html",
-            "size_megabytes": 5120,
             "description": "Static files"
         }
     ],
     "resources": {
-        "default": {
+        "minimum": {
             "cpu": "0.10",
             "memory": "64Mi"
         },
-        "minimum": {
+        "recommended": {
             "cpu": "0.10",
             "memory": "64Mi"
         }

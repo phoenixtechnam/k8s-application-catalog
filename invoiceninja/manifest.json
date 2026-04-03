@@ -49,32 +49,29 @@
         {
             "local_path": "applications/invoiceninja/public",
             "container_path": "/var/www/app/public",
-            "size_megabytes": 5120,
             "description": "Public assets and generated files"
         },
         {
             "local_path": "applications/invoiceninja/storage",
             "container_path": "/var/www/app/storage",
-            "size_megabytes": 5120,
             "description": "Application storage (invoices, logs, cache)"
         },
         {
             "local_path": "applications/invoiceninja/database",
             "container_path": "/var/lib/mysql",
-            "size_megabytes": 5120,
             "description": "MariaDB database storage"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.50",
-            "memory": "512Mi",
-            "storage": "15Gi"
-        },
         "minimum": {
             "cpu": "0.25",
             "memory": "256Mi",
             "storage": "5Gi"
+        },
+        "recommended": {
+            "cpu": "0.50",
+            "memory": "512Mi",
+            "storage": "15Gi"
         }
     },
     "health_check": {

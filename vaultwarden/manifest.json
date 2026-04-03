@@ -40,19 +40,18 @@
         {
             "local_path": "applications/vaultwarden",
             "container_path": "/data",
-            "size_megabytes": 1024,
             "description": "Vaultwarden data and SQLite database"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.25",
-            "memory": "128Mi",
-            "storage": "1Gi"
-        },
         "minimum": {
             "cpu": "0.10",
             "memory": "64Mi",
+            "storage": "1Gi"
+        },
+        "recommended": {
+            "cpu": "0.25",
+            "memory": "128Mi",
             "storage": "1Gi"
         }
     },

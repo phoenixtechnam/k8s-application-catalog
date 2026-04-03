@@ -34,17 +34,16 @@
         {
             "local_path": "services/redis-7",
             "container_path": "/data",
-            "size_megabytes": 1024,
             "description": "Cache data"
         }
     ],
     "resources": {
-        "default": {
+        "minimum": {
             "cpu": "0.10",
             "memory": "128Mi",
             "storage": "1Gi"
         },
-        "minimum": {
+        "recommended": {
             "cpu": "0.10",
             "memory": "128Mi",
             "storage": "1Gi"

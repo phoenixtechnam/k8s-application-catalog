@@ -52,26 +52,24 @@
         {
             "local_path": "applications/n8n/data",
             "container_path": "/home/node/.n8n",
-            "size_megabytes": 5120,
             "description": "n8n workflow data and credentials"
         },
         {
             "local_path": "applications/n8n/database",
             "container_path": "/var/lib/postgresql/data",
-            "size_megabytes": 5120,
             "description": "PostgreSQL data directory"
         }
     ],
     "resources": {
-        "default": {
-            "cpu": "0.50",
-            "memory": "512Mi",
-            "storage": "10Gi"
-        },
         "minimum": {
             "cpu": "0.25",
             "memory": "256Mi",
             "storage": "5Gi"
+        },
+        "recommended": {
+            "cpu": "0.50",
+            "memory": "512Mi",
+            "storage": "10Gi"
         }
     },
     "health_check": {
