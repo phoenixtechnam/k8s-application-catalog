@@ -2,20 +2,20 @@
     "name": "MariaDB",
     "code": "mariadb",
     "type": "database",
-    "version": "11.4",
+    "version": "11.8",
     "description": "MariaDB — dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mariadb",
     "web_server": null,
-    "image": "mariadb:11.4",
+    "image": "mariadb:11.8",
     "has_dockerfile": false,
     "deployment_strategy": "deployment",
     "components": [
         {
             "name": "mariadb",
             "type": "deployment",
-            "image": "mariadb:11.4",
+            "image": "mariadb:11.8",
             "ports": [
                 {
                     "port": 3306,
@@ -71,7 +71,7 @@
     "provides": {
         "database": {
             "engine": "mariadb",
-            "version": "11.4",
+            "version": "11.8",
             "protocol": "mysql",
             "port": 3306,
             "credentials": {
@@ -85,35 +85,15 @@
             "MARIADB_ROOT_PASSWORD"
         ],
         "fixed": {
-            "MARIADB_AUTO_UPGRADE": "1"
+            "MARIADB_AUTO_UPGRADE": "1",
+            "LD_PRELOAD": "/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
         }
     },
     "supportedVersions": [
         {
-            "version": "10.6",
+            "version": "11.4",
             "isDefault": false,
             "upgradeFrom": [],
-            "components": [
-                {
-                    "name": "mariadb",
-                    "image": "mariadb:10.6"
-                }
-            ],
-            "provides": {
-                "database": {
-                    "engine": "mariadb",
-                    "version": "10.6",
-                    "protocol": "mysql",
-                    "port": 3306
-                }
-            }
-        },
-        {
-            "version": "11.4",
-            "isDefault": true,
-            "upgradeFrom": [
-                "10.6"
-            ],
             "components": [
                 {
                     "name": "mariadb",
@@ -124,6 +104,48 @@
                 "database": {
                     "engine": "mariadb",
                     "version": "11.4",
+                    "protocol": "mysql",
+                    "port": 3306
+                }
+            }
+        },
+        {
+            "version": "11.8",
+            "isDefault": true,
+            "upgradeFrom": [
+                "11.4"
+            ],
+            "components": [
+                {
+                    "name": "mariadb",
+                    "image": "mariadb:11.8"
+                }
+            ],
+            "provides": {
+                "database": {
+                    "engine": "mariadb",
+                    "version": "11.8",
+                    "protocol": "mysql",
+                    "port": 3306
+                }
+            }
+        },
+        {
+            "version": "12.2",
+            "isDefault": false,
+            "upgradeFrom": [
+                "11.8"
+            ],
+            "components": [
+                {
+                    "name": "mariadb",
+                    "image": "mariadb:12.2"
+                }
+            ],
+            "provides": {
+                "database": {
+                    "engine": "mariadb",
+                    "version": "12.2",
                     "protocol": "mysql",
                     "port": 3306
                 }
