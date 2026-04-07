@@ -3,22 +3,22 @@
     "code": "nginx-php",
     "type": "runtime",
     "version": "8.4",
-    "description": "NGINX web server with PHP-FPM for modern PHP applications",
+    "description": "NGINX web server with PHP-FPM for modern PHP applications (serversideup/php)",
     "category": "runtime",
     "min_plan": "starter",
     "runtime": "php",
     "web_server": "nginx",
-    "image": null,
-    "has_dockerfile": true,
+    "image": "serversideup/php:8.4-fpm-nginx-alpine",
+    "has_dockerfile": false,
     "deployment_strategy": "deployment",
     "components": [
         {
             "name": "nginx-php",
             "type": "deployment",
-            "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php:8.4",
+            "image": "serversideup/php:8.4-fpm-nginx-alpine",
             "ports": [
                 {
-                    "port": 80,
+                    "port": 8080,
                     "protocol": "TCP",
                     "ingress": true
                 }
@@ -55,26 +55,36 @@
         }
     },
     "health_check": {
-        "path": "/health",
+        "path": "/healthcheck",
         "command": null,
-        "port": 80,
+        "port": 8080,
         "initial_delay_seconds": 30,
         "period_seconds": 30
     },
     "parameters": [
         {
             "key": "env.PHP_MEMORY_LIMIT",
-            "label": "Php Memory Limit",
+            "label": "PHP Memory Limit",
             "type": "string"
         },
         {
-            "key": "env.PHP_UPLOAD_MAX_FILESIZE",
-            "label": "Php Upload Max Filesize",
+            "key": "env.PHP_UPLOAD_MAX_FILE_SIZE",
+            "label": "PHP Upload Max File Size",
+            "type": "string"
+        },
+        {
+            "key": "env.PHP_POST_MAX_SIZE",
+            "label": "PHP Post Max Size",
             "type": "string"
         },
         {
             "key": "env.PHP_MAX_EXECUTION_TIME",
-            "label": "Php Max Execution Time",
+            "label": "PHP Max Execution Time",
+            "type": "string"
+        },
+        {
+            "key": "env.PHP_OPCACHE_ENABLE",
+            "label": "Enable OPcache",
             "type": "string"
         }
     ],
@@ -108,8 +118,10 @@
     "env_vars": {
         "configurable": [
             "PHP_MEMORY_LIMIT",
-            "PHP_UPLOAD_MAX_FILESIZE",
-            "PHP_MAX_EXECUTION_TIME"
+            "PHP_UPLOAD_MAX_FILE_SIZE",
+            "PHP_POST_MAX_SIZE",
+            "PHP_MAX_EXECUTION_TIME",
+            "PHP_OPCACHE_ENABLE"
         ],
         "fixed": {}
     },
@@ -121,7 +133,7 @@
             "components": [
                 {
                     "name": "nginx-php",
-                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php:8.3"
+                    "image": "serversideup/php:8.3-fpm-nginx-alpine"
                 }
             ]
         },
@@ -134,7 +146,20 @@
             "components": [
                 {
                     "name": "nginx-php",
-                    "image": "ghcr.io/phoenixtechnam/k8s-application-catalog/nginx-php:8.4"
+                    "image": "serversideup/php:8.4-fpm-nginx-alpine"
+                }
+            ]
+        },
+        {
+            "version": "8.5",
+            "isDefault": false,
+            "upgradeFrom": [
+                "8.4"
+            ],
+            "components": [
+                {
+                    "name": "nginx-php",
+                    "image": "serversideup/php:8.5-fpm-nginx-alpine"
                 }
             ]
         }
