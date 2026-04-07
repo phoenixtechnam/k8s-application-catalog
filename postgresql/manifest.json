@@ -8,14 +8,14 @@
     "min_plan": "starter",
     "runtime": "postgresql",
     "web_server": null,
-    "image": "postgres:18-alpine",
+    "image": "postgres:18",
     "has_dockerfile": false,
     "deployment_strategy": "deployment",
     "components": [
         {
             "name": "postgresql",
             "type": "deployment",
-            "image": "postgres:18-alpine",
+            "image": "postgres:18",
             "ports": [
                 {
                     "port": 5432,
@@ -94,7 +94,7 @@
             "components": [
                 {
                     "name": "postgresql",
-                    "image": "postgres:17-alpine"
+                    "image": "postgres:17"
                 }
             ],
             "provides": {
@@ -116,7 +116,7 @@
             "components": [
                 {
                     "name": "postgresql",
-                    "image": "postgres:18-alpine"
+                    "image": "postgres:18"
                 }
             ],
             "provides": {

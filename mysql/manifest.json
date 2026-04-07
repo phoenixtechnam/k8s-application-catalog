@@ -2,20 +2,20 @@
     "name": "MySQL",
     "code": "mysql",
     "type": "database",
-    "version": "8.4",
+    "version": "8",
     "description": "MySQL — dedicated instance for applications requiring MySQL specifically",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mysql",
     "web_server": null,
-    "image": "mysql:8.4",
+    "image": "mysql:8",
     "has_dockerfile": false,
     "deployment_strategy": "deployment",
     "components": [
         {
             "name": "mysql",
             "type": "deployment",
-            "image": "mysql:8.4",
+            "image": "mysql:8",
             "ports": [
                 {
                     "port": 3306,
@@ -70,7 +70,7 @@
     "provides": {
         "database": {
             "engine": "mysql",
-            "version": "8.4",
+            "version": "8",
             "protocol": "mysql",
             "port": 3306,
             "credentials": {
@@ -87,40 +87,40 @@
     },
     "supportedVersions": [
         {
-            "version": "8.4",
+            "version": "8",
             "isDefault": true,
             "upgradeFrom": [],
             "components": [
                 {
                     "name": "mysql",
-                    "image": "mysql:8.4"
+                    "image": "mysql:8"
                 }
             ],
             "provides": {
                 "database": {
                     "engine": "mysql",
-                    "version": "8.4",
+                    "version": "8",
                     "protocol": "mysql",
                     "port": 3306
                 }
             }
         },
         {
-            "version": "9.4",
+            "version": "9",
             "isDefault": false,
             "upgradeFrom": [
-                "8.4"
+                "8"
             ],
             "components": [
                 {
                     "name": "mysql",
-                    "image": "mysql:9.4"
+                    "image": "mysql:9"
                 }
             ],
             "provides": {
                 "database": {
                     "engine": "mysql",
-                    "version": "9.4",
+                    "version": "9",
                     "protocol": "mysql",
                     "port": 3306
                 }

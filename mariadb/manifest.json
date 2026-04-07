@@ -2,20 +2,20 @@
     "name": "MariaDB",
     "code": "mariadb",
     "type": "database",
-    "version": "11.8",
+    "version": "11",
     "description": "MariaDB — dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mariadb",
     "web_server": null,
-    "image": "mariadb:11.8",
+    "image": "mariadb:11",
     "has_dockerfile": false,
     "deployment_strategy": "deployment",
     "components": [
         {
             "name": "mariadb",
             "type": "deployment",
-            "image": "mariadb:11.8",
+            "image": "mariadb:11",
             "ports": [
                 {
                     "port": 3306,
@@ -71,7 +71,7 @@
     "provides": {
         "database": {
             "engine": "mariadb",
-            "version": "11.8",
+            "version": "11",
             "protocol": "mysql",
             "port": 3306,
             "credentials": {
@@ -91,61 +91,61 @@
     },
     "supportedVersions": [
         {
-            "version": "10.11",
+            "version": "10",
             "isDefault": false,
             "upgradeFrom": [],
             "components": [
                 {
                     "name": "mariadb",
-                    "image": "mariadb:10.11"
+                    "image": "mariadb:10"
                 }
             ],
             "provides": {
                 "database": {
                     "engine": "mariadb",
-                    "version": "10.11",
+                    "version": "10",
                     "protocol": "mysql",
                     "port": 3306
                 }
             }
         },
         {
-            "version": "11.8",
+            "version": "11",
             "isDefault": true,
             "upgradeFrom": [
-                "10.11"
+                "10"
             ],
             "components": [
                 {
                     "name": "mariadb",
-                    "image": "mariadb:11.8"
+                    "image": "mariadb:11"
                 }
             ],
             "provides": {
                 "database": {
                     "engine": "mariadb",
-                    "version": "11.8",
+                    "version": "11",
                     "protocol": "mysql",
                     "port": 3306
                 }
             }
         },
         {
-            "version": "12.2",
+            "version": "12",
             "isDefault": false,
             "upgradeFrom": [
-                "11.8"
+                "11"
             ],
             "components": [
                 {
                     "name": "mariadb",
-                    "image": "mariadb:12.2"
+                    "image": "mariadb:12"
                 }
             ],
             "provides": {
                 "database": {
                     "engine": "mariadb",
-                    "version": "12.2",
+                    "version": "12",
                     "protocol": "mysql",
                     "port": 3306
                 }
