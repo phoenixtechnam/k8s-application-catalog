@@ -40,12 +40,12 @@
     "resources": {
         "minimum": {
             "cpu": "0.10",
-            "memory": "128Mi",
+            "memory": "256Mi",
             "storage": "1Gi"
         },
         "recommended": {
             "cpu": "0.25",
-            "memory": "256Mi",
+            "memory": "768Mi",
             "storage": "5Gi"
         }
     },
@@ -91,19 +91,19 @@
     },
     "supportedVersions": [
         {
-            "version": "11.4",
+            "version": "10.11",
             "isDefault": false,
             "upgradeFrom": [],
             "components": [
                 {
                     "name": "mariadb",
-                    "image": "mariadb:11.4"
+                    "image": "mariadb:10.11"
                 }
             ],
             "provides": {
                 "database": {
                     "engine": "mariadb",
-                    "version": "11.4",
+                    "version": "10.11",
                     "protocol": "mysql",
                     "port": 3306
                 }
@@ -113,7 +113,7 @@
             "version": "11.8",
             "isDefault": true,
             "upgradeFrom": [
-                "11.4"
+                "10.11"
             ],
             "components": [
                 {

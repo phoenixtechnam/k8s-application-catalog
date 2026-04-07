@@ -2,20 +2,20 @@
     "name": "PostgreSQL",
     "code": "postgresql",
     "type": "database",
-    "version": "17",
+    "version": "18",
     "description": "PostgreSQL — dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "postgresql",
     "web_server": null,
-    "image": "postgres:17-alpine",
+    "image": "postgres:18-alpine",
     "has_dockerfile": false,
     "deployment_strategy": "deployment",
     "components": [
         {
             "name": "postgresql",
             "type": "deployment",
-            "image": "postgres:17-alpine",
+            "image": "postgres:18-alpine",
             "ports": [
                 {
                     "port": 5432,
@@ -45,7 +45,7 @@
         },
         "recommended": {
             "cpu": "0.25",
-            "memory": "256Mi",
+            "memory": "512Mi",
             "storage": "5Gi"
         }
     },
@@ -70,7 +70,7 @@
     "provides": {
         "database": {
             "engine": "postgresql",
-            "version": "17",
+            "version": "18",
             "protocol": "postgresql",
             "port": 5432,
             "credentials": {
@@ -87,31 +87,9 @@
     },
     "supportedVersions": [
         {
-            "version": "16",
+            "version": "17",
             "isDefault": false,
             "upgradeFrom": [],
-            "minPlan": "business",
-            "components": [
-                {
-                    "name": "postgresql",
-                    "image": "postgres:16-alpine"
-                }
-            ],
-            "provides": {
-                "database": {
-                    "engine": "postgresql",
-                    "version": "16",
-                    "protocol": "postgresql",
-                    "port": 5432
-                }
-            }
-        },
-        {
-            "version": "17",
-            "isDefault": true,
-            "upgradeFrom": [
-                "16"
-            ],
             "minPlan": "starter",
             "components": [
                 {
@@ -123,6 +101,28 @@
                 "database": {
                     "engine": "postgresql",
                     "version": "17",
+                    "protocol": "postgresql",
+                    "port": 5432
+                }
+            }
+        },
+        {
+            "version": "18",
+            "isDefault": true,
+            "upgradeFrom": [
+                "17"
+            ],
+            "minPlan": "starter",
+            "components": [
+                {
+                    "name": "postgresql",
+                    "image": "postgres:18-alpine"
+                }
+            ],
+            "provides": {
+                "database": {
+                    "engine": "postgresql",
+                    "version": "18",
                     "protocol": "postgresql",
                     "port": 5432
                 }
