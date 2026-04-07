@@ -660,6 +660,37 @@
                         "type": "array",
                         "description": "Additional tags for this specific version",
                         "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+                    },
+                    "volumes": {
+                        "type": "array",
+                        "description": "Version-specific volume configuration. If present, REPLACES the top-level volumes for this version. Use when different versions require different container mount paths (e.g., PostgreSQL 18+ changed the default data directory convention).",
+                        "items": {
+                            "type": "object",
+                            "required": ["local_path", "container_path"],
+                            "properties": {
+                                "local_path": { "type": "string" },
+                                "container_path": { "type": "string" },
+                                "description": { "type": "string" }
+                            },
+                            "additionalProperties": false
+                        }
+                    },
+                    "env_vars": {
+                        "type": "object",
+                        "description": "Version-specific environment variable overrides. Merged on top of the entry's base env_vars. Use for version-specific config flags (e.g., setting PGDATA for PG 18+ to match a custom mount path).",
+                        "properties": {
+                            "fixed": {
+                                "type": "object",
+                                "description": "Version-specific fixed env vars. Merged with entry-level fixed env vars; version-level wins on conflict.",
+                                "additionalProperties": { "type": "string" }
+                            },
+                            "configurable": {
+                                "type": "array",
+                                "description": "Version-specific configurable env var names. If present, replaces the entry-level configurable list.",
+                                "items": { "type": "string" }
+                            }
+                        },
+                        "additionalProperties": false
                     }
                 },
                 "additionalProperties": false

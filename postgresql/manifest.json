@@ -119,6 +119,19 @@
                     "image": "postgres:18"
                 }
             ],
+            "volumes": [
+                {
+                    "local_path": "databases/postgresql",
+                    "container_path": "/var/lib/postgresql",
+                    "description": "Database data (PG 18+ convention: mount parent dir)"
+                }
+            ],
+            "env_vars": {
+                "fixed": {
+                    "PGDATA": "/var/lib/postgresql/18/docker"
+                }
+            },
+            "migrationNotes": "PostgreSQL 18 changed the default data directory convention. The image now expects the mount at /var/lib/postgresql (not /var/lib/postgresql/data) and stores data in a versioned subdirectory. Upgrading from v17 requires manual data migration — the data must be moved from /var/lib/postgresql/data/* to /var/lib/postgresql/18/docker/* (or use pg_upgrade). In-place upgrade is NOT automatic.",
             "provides": {
                 "database": {
                     "engine": "postgresql",
