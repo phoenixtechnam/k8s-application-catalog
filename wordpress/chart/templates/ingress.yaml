@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "wordpress.labels" . | nindent 4 }}
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: {{ .Values.ingress.annotations | index "nginx.ingress.kubernetes.io/proxy-body-size" | default "64m" | quote }}
+    nginx.ingress.kubernetes.io/proxy-body-size: {{ index (.Values.ingress.annotations | default dict) "nginx.ingress.kubernetes.io/proxy-body-size" | default "64m" | quote }}
     {{- if .Values.ingress.tls }}
     cert-manager.io/cluster-issuer: letsencrypt-prod
     {{- end }}
