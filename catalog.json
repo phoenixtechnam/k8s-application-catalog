@@ -24,6 +24,7 @@
         "directus",
         "paperless-ngx",
         "invoiceninja",
+        "dolibarr",
         "nginx-php",
         "apache-php",
         "static-nginx",
