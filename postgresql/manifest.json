@@ -32,8 +32,7 @@
     },
     "volumes": [
         {
-            "local_path": "databases/postgresql",
-            "container_path": "/var/lib/postgresql/data",
+            "container_path": "/var/lib/postgresql",
             "description": "Database data"
         }
     ],
@@ -83,35 +82,15 @@
         "generated": [
             "POSTGRES_PASSWORD"
         ],
-        "fixed": {}
+        "fixed": {
+            "PGDATA": "/var/lib/postgresql/18/docker"
+        }
     },
     "supportedVersions": [
         {
-            "version": "17",
-            "isDefault": false,
-            "upgradeFrom": [],
-            "minPlan": "starter",
-            "components": [
-                {
-                    "name": "postgresql",
-                    "image": "postgres:17"
-                }
-            ],
-            "provides": {
-                "database": {
-                    "engine": "postgresql",
-                    "version": "17",
-                    "protocol": "postgresql",
-                    "port": 5432
-                }
-            }
-        },
-        {
             "version": "18",
             "isDefault": true,
-            "upgradeFrom": [
-                "17"
-            ],
+            "upgradeFrom": [],
             "minPlan": "starter",
             "components": [
                 {
@@ -121,7 +100,6 @@
             ],
             "volumes": [
                 {
-                    "local_path": "databases/postgresql",
                     "container_path": "/var/lib/postgresql",
                     "description": "Database data (PG 18+ convention: mount parent dir)"
                 }
@@ -131,7 +109,6 @@
                     "PGDATA": "/var/lib/postgresql/18/docker"
                 }
             },
-            "migrationNotes": "PostgreSQL 18 changed the default data directory convention. The image now expects the mount at /var/lib/postgresql (not /var/lib/postgresql/data) and stores data in a versioned subdirectory. Upgrading from v17 requires manual data migration — the data must be moved from /var/lib/postgresql/data/* to /var/lib/postgresql/18/docker/* (or use pg_upgrade). In-place upgrade is NOT automatic.",
             "provides": {
                 "database": {
                     "engine": "postgresql",

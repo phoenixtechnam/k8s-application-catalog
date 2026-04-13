@@ -32,7 +32,6 @@
     },
     "volumes": [
         {
-            "local_path": "databases/mariadb",
             "container_path": "/var/lib/mysql",
             "description": "Database data"
         }
