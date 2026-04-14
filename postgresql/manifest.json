@@ -16,6 +16,7 @@
             "name": "postgresql",
             "type": "deployment",
             "image": "postgres:18",
+            "database": "postgresql",
             "ports": [
                 {
                     "port": 5432,

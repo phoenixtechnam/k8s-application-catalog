@@ -16,6 +16,7 @@
             "name": "mongodb-7",
             "type": "deployment",
             "image": "mongo:7.0",
+            "database": "mongodb",
             "ports": [
                 {
                     "port": 27017,
@@ -40,7 +41,7 @@
     "resources": {
         "minimum": {
             "cpu": "0.10",
-            "memory": "128Mi",
+            "memory": "256Mi",
             "storage": "1Gi"
         },
         "recommended": {
@@ -82,9 +83,10 @@
     "env_vars": {
         "configurable": [],
         "generated": [
-            "MONGO_INITDB_ROOT_USERNAME",
             "MONGO_INITDB_ROOT_PASSWORD"
         ],
-        "fixed": {}
+        "fixed": {
+            "MONGO_INITDB_ROOT_USERNAME": "root"
+        }
     }
 }

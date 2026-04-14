@@ -26,13 +26,19 @@
         {
             "name": "postgresql",
             "type": "statefulset",
-            "image": "postgres:17-alpine",
+            "image": "postgres:18-alpine",
+            "database": "postgresql",
             "ports": [
                 {
                     "port": 5432,
                     "protocol": "TCP"
                 }
-            ]
+            ],
+            "env_vars": {
+                "fixed": {
+                    "PGDATA": "/var/lib/postgresql/18/docker"
+                }
+            }
         },
         {
             "name": "redis",
@@ -74,7 +80,7 @@
         },
         {
             "local_path": "applications/paperless-ngx/database",
-            "container_path": "/var/lib/postgresql/data",
+            "container_path": "/var/lib/postgresql",
             "description": "PostgreSQL database storage"
         }
     ],
