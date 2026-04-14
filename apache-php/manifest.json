@@ -63,29 +63,53 @@
     },
     "parameters": [
         {
-            "key": "env.PHP_MEMORY_LIMIT",
+            "key": "APACHE_DOCUMENT_ROOT",
+            "label": "Document Root",
+            "type": "string",
+            "default": "/var/www/html",
+            "description": "Web server document root path. Use /var/www/html/public for Laravel/Symfony."
+        },
+        {
+            "key": "PHP_MEMORY_LIMIT",
             "label": "PHP Memory Limit",
-            "type": "string"
+            "type": "string",
+            "default": "256M",
+            "description": "Maximum memory per PHP script (e.g. 128M, 256M, 512M)."
         },
         {
-            "key": "env.PHP_UPLOAD_MAX_FILE_SIZE",
-            "label": "PHP Upload Max File Size",
-            "type": "string"
+            "key": "PHP_MAX_EXECUTION_TIME",
+            "label": "Max Execution Time",
+            "type": "string",
+            "default": "99",
+            "description": "Maximum script execution time in seconds."
         },
         {
-            "key": "env.PHP_POST_MAX_SIZE",
-            "label": "PHP Post Max Size",
-            "type": "string"
+            "key": "PHP_UPLOAD_MAX_FILE_SIZE",
+            "label": "Upload Max File Size",
+            "type": "string",
+            "default": "100M",
+            "description": "Maximum size for a single uploaded file."
         },
         {
-            "key": "env.PHP_MAX_EXECUTION_TIME",
-            "label": "PHP Max Execution Time",
-            "type": "string"
+            "key": "PHP_POST_MAX_SIZE",
+            "label": "POST Max Size",
+            "type": "string",
+            "default": "100M",
+            "description": "Maximum size for POST request body (should be >= upload max)."
         },
         {
-            "key": "env.PHP_OPCACHE_ENABLE",
-            "label": "Enable OPcache",
-            "type": "string"
+            "key": "PHP_DATE_TIMEZONE",
+            "label": "Timezone",
+            "type": "string",
+            "default": "UTC",
+            "description": "PHP default timezone (e.g. UTC, Europe/Berlin, America/New_York)."
+        },
+        {
+            "key": "PHP_OPCACHE_ENABLE",
+            "label": "OPcache",
+            "type": "string",
+            "default": "1",
+            "description": "Enable PHP OPcache for better performance (1 = on, 0 = off)."
         }
     ],
     "tags": [
@@ -118,13 +142,20 @@
     },
     "env_vars": {
         "configurable": [
+            "APACHE_DOCUMENT_ROOT",
             "PHP_MEMORY_LIMIT",
+            "PHP_MAX_EXECUTION_TIME",
             "PHP_UPLOAD_MAX_FILE_SIZE",
             "PHP_POST_MAX_SIZE",
-            "PHP_MAX_EXECUTION_TIME",
+            "PHP_DATE_TIMEZONE",
             "PHP_OPCACHE_ENABLE"
         ],
-        "fixed": {}
+        "fixed": {
+            "APACHE_DOCUMENT_ROOT": "/var/www/html",
+            "SSL_MODE": "off",
+            "PHP_OPCACHE_ENABLE": "1",
+            "PHP_OPCACHE_VALIDATE_TIMESTAMPS": "1"
+        }
     },
     "supportedVersions": [
         {
