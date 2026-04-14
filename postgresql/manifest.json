@@ -60,7 +60,22 @@
         "initial_delay_seconds": 30,
         "period_seconds": 30
     },
-    "parameters": [],
+    "parameters": [
+        {
+            "key": "POSTGRES_DB",
+            "label": "Default Database",
+            "type": "string",
+            "default": "postgres",
+            "description": "Default database name (created on first startup)."
+        },
+        {
+            "key": "POSTGRES_USER",
+            "label": "Superuser Name",
+            "type": "string",
+            "default": "postgres",
+            "description": "Name of the superuser (default: postgres)."
+        }
+    ],
     "tags": [
         "database",
         "postgresql",
@@ -79,7 +94,7 @@
         }
     },
     "env_vars": {
-        "configurable": [],
+        "configurable": ["POSTGRES_DB", "POSTGRES_USER"],
         "generated": [
             "POSTGRES_PASSWORD"
         ],

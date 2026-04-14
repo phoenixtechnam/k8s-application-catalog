@@ -60,7 +60,29 @@
         "initial_delay_seconds": 60,
         "period_seconds": 30
     },
-    "parameters": [],
+    "parameters": [
+        {
+            "key": "MARIADB_DATABASE",
+            "label": "Default Database",
+            "type": "string",
+            "default": "",
+            "description": "Create a database on first startup (optional)."
+        },
+        {
+            "key": "MARIADB_USER",
+            "label": "Database User",
+            "type": "string",
+            "default": "",
+            "description": "Create a non-root user on first startup (optional, requires MARIADB_DATABASE)."
+        },
+        {
+            "key": "MARIADB_PASSWORD",
+            "label": "Database Password",
+            "type": "secret",
+            "default": "",
+            "description": "Password for the non-root user (optional, requires MARIADB_USER)."
+        }
+    ],
     "tags": [
         "database",
         "mariadb",
@@ -80,7 +102,7 @@
         }
     },
     "env_vars": {
-        "configurable": [],
+        "configurable": ["MARIADB_DATABASE", "MARIADB_USER", "MARIADB_PASSWORD"],
         "generated": [
             "MARIADB_ROOT_PASSWORD"
         ],

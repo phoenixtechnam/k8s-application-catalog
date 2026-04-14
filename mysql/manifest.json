@@ -61,7 +61,29 @@
         "initial_delay_seconds": 60,
         "period_seconds": 30
     },
-    "parameters": [],
+    "parameters": [
+        {
+            "key": "MYSQL_DATABASE",
+            "label": "Default Database",
+            "type": "string",
+            "default": "",
+            "description": "Create a database on first startup (optional)."
+        },
+        {
+            "key": "MYSQL_USER",
+            "label": "Database User",
+            "type": "string",
+            "default": "",
+            "description": "Create a non-root user on first startup (optional, requires MYSQL_DATABASE)."
+        },
+        {
+            "key": "MYSQL_PASSWORD",
+            "label": "Database Password",
+            "type": "secret",
+            "default": "",
+            "description": "Password for the non-root user (optional, requires MYSQL_USER)."
+        }
+    ],
     "tags": [
         "database",
         "mysql",
@@ -79,7 +101,7 @@
         }
     },
     "env_vars": {
-        "configurable": [],
+        "configurable": ["MYSQL_DATABASE", "MYSQL_USER", "MYSQL_PASSWORD"],
         "generated": [
             "MYSQL_ROOT_PASSWORD"
         ],

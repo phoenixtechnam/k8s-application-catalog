@@ -61,7 +61,15 @@
         "initial_delay_seconds": 30,
         "period_seconds": 30
     },
-    "parameters": [],
+    "parameters": [
+        {
+            "key": "MONGO_INITDB_DATABASE",
+            "label": "Default Database",
+            "type": "string",
+            "default": "",
+            "description": "Create a default database on first startup (optional)."
+        }
+    ],
     "tags": [
         "database",
         "mongodb",
@@ -81,7 +89,7 @@
         }
     },
     "env_vars": {
-        "configurable": [],
+        "configurable": ["MONGO_INITDB_DATABASE"],
         "generated": [
             "MONGO_INITDB_ROOT_PASSWORD"
         ],
