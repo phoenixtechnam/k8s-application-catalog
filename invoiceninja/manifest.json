@@ -189,5 +189,29 @@
             "breakingChanges": "Major version upgrade from Invoice Ninja v4 to v5. Data migration required.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "MARIADB_ROOT_PASSWORD",
+            "INVOICENINJA_DB_PASSWORD",
+            "APP_KEY"
+        ],
+        "fixed": {
+            "MARIADB_DATABASE": "invoiceninja",
+            "MARIADB_USER": "invoiceninja",
+            "MARIADB_PASSWORD": "{{ENV:INVOICENINJA_DB_PASSWORD}}",
+            "DB_TYPE": "mysql",
+            "DB_HOST": "{{SERVICE:mariadb}}",
+            "DB_DATABASE": "invoiceninja",
+            "DB_USERNAME": "invoiceninja",
+            "DB_PASSWORD": "{{ENV:INVOICENINJA_DB_PASSWORD}}",
+            "DB_STRICT": "false",
+            "APP_ENV": "production"
+        },
+        "configurable": [
+            "APP_URL",
+            "APP_DEBUG",
+            "REQUIRE_HTTPS"
+        ]
+    }
 }

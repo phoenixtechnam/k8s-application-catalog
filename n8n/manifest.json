@@ -191,5 +191,25 @@
             "breakingChanges": "Major version upgrade from 1.x to 2.x. Workflow format changes may require review.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "POSTGRES_PASSWORD",
+            "N8N_ENCRYPTION_KEY"
+        ],
+        "fixed": {
+            "POSTGRES_DB": "n8n",
+            "POSTGRES_USER": "n8n",
+            "DB_TYPE": "postgresdb",
+            "DB_POSTGRESDB_HOST": "{{SERVICE:postgresql}}",
+            "DB_POSTGRESDB_PORT": "5432",
+            "DB_POSTGRESDB_DATABASE": "n8n",
+            "DB_POSTGRESDB_USER": "n8n",
+            "DB_POSTGRESDB_PASSWORD": "{{ENV:POSTGRES_PASSWORD}}"
+        },
+        "configurable": [
+            "N8N_SECURE_COOKIE",
+            "N8N_DIAGNOSTICS_ENABLED"
+        ]
+    }
 }

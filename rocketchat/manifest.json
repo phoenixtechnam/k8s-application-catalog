@@ -181,5 +181,18 @@
             "breakingChanges": "Major version upgrade. Apps marketplace changes.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "MONGO_INITDB_ROOT_PASSWORD"
+        ],
+        "fixed": {
+            "MONGO_INITDB_ROOT_USERNAME": "root",
+            "MONGO_INITDB_DATABASE": "rocketchat",
+            "MONGO_URL": "mongodb://root:{{ENV:MONGO_INITDB_ROOT_PASSWORD}}@{{SERVICE:mongodb}}:27017/rocketchat?authSource=admin"
+        },
+        "configurable": [
+            "ROOT_URL"
+        ]
+    }
 }

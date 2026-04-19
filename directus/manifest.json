@@ -165,5 +165,28 @@
             "breakingChanges": "Major version upgrade. API breaking changes.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "POSTGRES_PASSWORD",
+            "DIRECTUS_KEY",
+            "DIRECTUS_SECRET"
+        ],
+        "fixed": {
+            "POSTGRES_DB": "directus",
+            "POSTGRES_USER": "directus",
+            "DB_CLIENT": "pg",
+            "DB_HOST": "{{SERVICE:postgresql}}",
+            "DB_PORT": "5432",
+            "DB_DATABASE": "directus",
+            "DB_USER": "directus",
+            "DB_PASSWORD": "{{ENV:POSTGRES_PASSWORD}}",
+            "KEY": "{{ENV:DIRECTUS_KEY}}",
+            "SECRET": "{{ENV:DIRECTUS_SECRET}}"
+        },
+        "configurable": [
+            "ADMIN_EMAIL",
+            "ADMIN_PASSWORD"
+        ]
+    }
 }

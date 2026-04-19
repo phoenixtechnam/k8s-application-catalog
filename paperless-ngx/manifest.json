@@ -219,5 +219,27 @@
             ],
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "POSTGRES_PASSWORD",
+            "PAPERLESS_SECRET_KEY"
+        ],
+        "fixed": {
+            "POSTGRES_DB": "paperless",
+            "POSTGRES_USER": "paperless",
+            "PAPERLESS_DBENGINE": "postgresql",
+            "PAPERLESS_DBHOST": "{{SERVICE:postgresql}}",
+            "PAPERLESS_DBPORT": "5432",
+            "PAPERLESS_DBNAME": "paperless",
+            "PAPERLESS_DBUSER": "paperless",
+            "PAPERLESS_DBPASS": "{{ENV:POSTGRES_PASSWORD}}",
+            "PAPERLESS_REDIS": "redis://{{SERVICE:redis}}:6379"
+        },
+        "configurable": [
+            "PAPERLESS_ADMIN_USER",
+            "PAPERLESS_ADMIN_MAIL",
+            "PAPERLESS_TASK_WORKERS"
+        ]
+    }
 }

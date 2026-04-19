@@ -208,5 +208,24 @@
             "breakingChanges": "Major version upgrade. Review custom module compatibility.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "MARIADB_ROOT_PASSWORD",
+            "DOLI_DB_PASSWORD"
+        ],
+        "fixed": {
+            "MARIADB_DATABASE": "dolibarr",
+            "MARIADB_USER": "dolibarr",
+            "MARIADB_PASSWORD": "{{ENV:DOLI_DB_PASSWORD}}",
+            "DOLI_DB_HOST": "{{SERVICE:mariadb}}",
+            "DOLI_DB_USER": "dolibarr",
+            "DOLI_DB_PASSWORD": "{{ENV:DOLI_DB_PASSWORD}}",
+            "DOLI_DB_NAME": "dolibarr"
+        },
+        "configurable": [
+            "DOLI_ADMIN_LOGIN",
+            "DOLI_MODULE_ENABLE"
+        ]
+    }
 }

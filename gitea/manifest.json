@@ -181,5 +181,24 @@
             ],
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "POSTGRES_PASSWORD"
+        ],
+        "fixed": {
+            "POSTGRES_DB": "gitea",
+            "POSTGRES_USER": "gitea",
+            "GITEA__database__DB_TYPE": "postgres",
+            "GITEA__database__HOST": "{{SERVICE:postgresql}}:5432",
+            "GITEA__database__NAME": "gitea",
+            "GITEA__database__USER": "gitea",
+            "GITEA__database__PASSWD": "{{ENV:POSTGRES_PASSWORD}}"
+        },
+        "configurable": [
+            "GITEA__server__DOMAIN",
+            "GITEA__server__ROOT_URL",
+            "GITEA__security__INSTALL_LOCK"
+        ]
+    }
 }

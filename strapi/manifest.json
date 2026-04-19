@@ -158,5 +158,28 @@
             "breakingChanges": "Major version upgrade from Strapi v4 to v5. Content-type schema changes.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "POSTGRES_PASSWORD",
+            "APP_KEYS",
+            "JWT_SECRET",
+            "ADMIN_JWT_SECRET",
+            "API_TOKEN_SALT"
+        ],
+        "fixed": {
+            "POSTGRES_DB": "strapi",
+            "POSTGRES_USER": "strapi",
+            "DATABASE_CLIENT": "postgres",
+            "DATABASE_HOST": "{{SERVICE:postgresql}}",
+            "DATABASE_PORT": "5432",
+            "DATABASE_NAME": "strapi",
+            "DATABASE_USERNAME": "strapi",
+            "DATABASE_PASSWORD": "{{ENV:POSTGRES_PASSWORD}}"
+        },
+        "configurable": [
+            "NODE_ENV",
+            "DATABASE_SSL"
+        ]
+    }
 }

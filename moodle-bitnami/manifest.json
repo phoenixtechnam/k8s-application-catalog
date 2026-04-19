@@ -251,5 +251,25 @@
             "breakingChanges": "Major version upgrade from Moodle 4.x to 5.x. Review plugin compatibility.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "MARIADB_ROOT_PASSWORD",
+            "MOODLE_DATABASE_PASSWORD"
+        ],
+        "fixed": {
+            "MARIADB_DATABASE": "bitnami_moodle",
+            "MARIADB_USER": "bn_moodle",
+            "MARIADB_PASSWORD": "{{ENV:MOODLE_DATABASE_PASSWORD}}",
+            "MOODLE_DATABASE_HOST": "{{SERVICE:mariadb}}",
+            "MOODLE_DATABASE_TYPE": "mariadb",
+            "MOODLE_DATABASE_NAME": "bitnami_moodle",
+            "MOODLE_DATABASE_USER": "bn_moodle",
+            "MOODLE_DATABASE_PASSWORD": "{{ENV:MOODLE_DATABASE_PASSWORD}}"
+        },
+        "configurable": [
+            "MOODLE_EMAIL",
+            "BITNAMI_DEBUG"
+        ]
+    }
 }

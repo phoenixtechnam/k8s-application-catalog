@@ -194,5 +194,25 @@
             "breakingChanges": "Major version upgrade. Check plugin compatibility.",
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "POSTGRES_PASSWORD"
+        ],
+        "fixed": {
+            "POSTGRES_DB": "discourse",
+            "POSTGRES_USER": "discourse",
+            "DISCOURSE_DATABASE_HOST": "{{SERVICE:postgresql}}",
+            "DISCOURSE_DATABASE_PORT_NUMBER": "5432",
+            "DISCOURSE_DATABASE_NAME": "discourse",
+            "DISCOURSE_DATABASE_USER": "discourse",
+            "DISCOURSE_DATABASE_PASSWORD": "{{ENV:POSTGRES_PASSWORD}}",
+            "DISCOURSE_REDIS_HOST": "{{SERVICE:redis}}",
+            "DISCOURSE_REDIS_PORT_NUMBER": "6379"
+        },
+        "configurable": [
+            "DISCOURSE_HOSTNAME",
+            "DISCOURSE_DEVELOPER_EMAILS"
+        ]
+    }
 }

@@ -166,5 +166,25 @@
             ],
             "isDefault": true
         }
-    ]
+    ],
+    "env_vars": {
+        "generated": [
+            "MARIADB_ROOT_PASSWORD",
+            "BOOKSTACK_DB_PASSWORD"
+        ],
+        "fixed": {
+            "MARIADB_DATABASE": "bookstack",
+            "MARIADB_USER": "bookstack",
+            "MARIADB_PASSWORD": "{{ENV:BOOKSTACK_DB_PASSWORD}}",
+            "DB_HOST": "{{SERVICE:mariadb}}",
+            "DB_PORT": "3306",
+            "DB_DATABASE": "bookstack",
+            "DB_USERNAME": "bookstack",
+            "DB_PASSWORD": "{{ENV:BOOKSTACK_DB_PASSWORD}}"
+        },
+        "configurable": [
+            "APP_DEBUG",
+            "APP_URL"
+        ]
+    }
 }
