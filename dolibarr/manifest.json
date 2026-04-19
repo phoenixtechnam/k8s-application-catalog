@@ -220,7 +220,6 @@
             "MARIADB_PASSWORD": "{{ENV:DOLI_DB_PASSWORD}}",
             "DOLI_DB_HOST": "{{SERVICE:mariadb}}",
             "DOLI_DB_USER": "dolibarr",
-            "DOLI_DB_PASSWORD": "{{ENV:DOLI_DB_PASSWORD}}",
             "DOLI_DB_NAME": "dolibarr"
         },
         "configurable": [
