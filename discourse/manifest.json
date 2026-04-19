@@ -25,7 +25,7 @@
         },
         {
             "name": "postgresql",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "postgres:17-alpine",
             "ports": [
                 {

@@ -25,7 +25,7 @@
         },
         {
             "name": "postgresql",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "postgres:18-alpine",
             "database": "postgresql",
             "ports": [
@@ -43,7 +43,7 @@
         },
         {
             "name": "clickhouse",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "clickhouse/clickhouse-server:26",
             "ports": [
                 {

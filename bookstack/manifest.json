@@ -25,7 +25,7 @@
         },
         {
             "name": "mariadb",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "mariadb:11.8",
             "ports": [
                 {

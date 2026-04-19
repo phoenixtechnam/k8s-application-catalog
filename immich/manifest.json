@@ -37,7 +37,7 @@
         },
         {
             "name": "postgresql",
-            "type": "statefulset",
+            "type": "deployment",
             "image": "tensorchord/pgvecto-rs:pg16-v0.2.1",
             "database": "postgresql",
             "ports": [
