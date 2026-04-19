@@ -21,7 +21,8 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
-            ]
+            ],
+            "volumes": []
         },
         {
             "name": "postgresql",
@@ -39,7 +40,10 @@
                 "fixed": {
                     "PGDATA": "/var/lib/postgresql/18/docker"
                 }
-            }
+            },
+            "volumes": [
+                "database"
+            ]
         }
     ],
     "networking": {

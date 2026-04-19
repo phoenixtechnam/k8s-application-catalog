@@ -21,6 +21,9 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
+            ],
+            "volumes": [
+                "uploads"
             ]
         },
         {
@@ -33,6 +36,9 @@
                     "protocol": "TCP",
                     "ingress": false
                 }
+            ],
+            "volumes": [
+                "database"
             ]
         }
     ],

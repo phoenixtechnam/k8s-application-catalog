@@ -21,6 +21,10 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
+            ],
+            "volumes": [
+                "public",
+                "storage"
             ]
         },
         {
@@ -32,6 +36,9 @@
                     "port": 3306,
                     "protocol": "TCP"
                 }
+            ],
+            "volumes": [
+                "database"
             ]
         }
     ],

@@ -3,7 +3,7 @@
     "code": "paperless-ngx",
     "type": "application",
     "version": "2.20.13",
-    "description": "Go paperless — scan, tag, and search all your documents from one organized digital archive.",
+    "description": "Go paperless \u2014 scan, tag, and search all your documents from one organized digital archive.",
     "url": "https://docs.paperless-ngx.com",
     "documentation": "https://docs.paperless-ngx.com/setup/",
     "category": "productivity",
@@ -21,6 +21,11 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
+            ],
+            "volumes": [
+                "data",
+                "media",
+                "consume"
             ]
         },
         {
@@ -38,7 +43,10 @@
                 "fixed": {
                     "PGDATA": "/var/lib/postgresql/18/docker"
                 }
-            }
+            },
+            "volumes": [
+                "database"
+            ]
         },
         {
             "name": "redis",
@@ -49,7 +57,8 @@
                     "port": 6379,
                     "protocol": "TCP"
                 }
-            ]
+            ],
+            "volumes": []
         }
     ],
     "networking": {

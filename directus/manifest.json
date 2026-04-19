@@ -3,7 +3,7 @@
     "code": "directus",
     "type": "application",
     "version": "11",
-    "description": "Turn any SQL database into a modern admin dashboard and API — no coding required.",
+    "description": "Turn any SQL database into a modern admin dashboard and API \u2014 no coding required.",
     "url": "https://directus.io",
     "documentation": "https://docs.directus.io",
     "category": "cms",
@@ -21,6 +21,10 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
+            ],
+            "volumes": [
+                "uploads",
+                "extensions"
             ]
         },
         {
@@ -38,7 +42,10 @@
                 "fixed": {
                     "PGDATA": "/var/lib/postgresql/18/docker"
                 }
-            }
+            },
+            "volumes": [
+                "database"
+            ]
         }
     ],
     "networking": {

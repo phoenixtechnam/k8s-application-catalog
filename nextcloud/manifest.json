@@ -22,6 +22,11 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
+            ],
+            "volumes": [
+                "data",
+                "config",
+                "apps"
             ]
         },
         {
@@ -34,6 +39,9 @@
                     "protocol": "TCP",
                     "ingress": false
                 }
+            ],
+            "volumes": [
+                "database"
             ]
         },
         {
@@ -47,7 +55,8 @@
                     "ingress": false
                 }
             ],
-            "optional": true
+            "optional": true,
+            "volumes": []
         },
         {
             "name": "collabora",
@@ -60,13 +69,19 @@
                     "ingress": true
                 }
             ],
-            "optional": true
+            "optional": true,
+            "volumes": []
         },
         {
             "name": "cron",
             "type": "cronjob",
             "image": "nextcloud:33-apache",
-            "schedule": "*/5 * * * *"
+            "schedule": "*/5 * * * *",
+            "volumes": [
+                "data",
+                "config",
+                "apps"
+            ]
         }
     ],
     "networking": {

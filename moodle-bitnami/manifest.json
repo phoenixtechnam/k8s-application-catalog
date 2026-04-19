@@ -21,6 +21,10 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
+            ],
+            "volumes": [
+                "data",
+                "userdata"
             ]
         },
         {
@@ -33,6 +37,9 @@
                     "protocol": "TCP",
                     "ingress": false
                 }
+            ],
+            "volumes": [
+                "database"
             ]
         },
         {
@@ -46,13 +53,18 @@
                     "ingress": false
                 }
             ],
-            "optional": true
+            "optional": true,
+            "volumes": []
         },
         {
             "name": "moodle-cron",
             "type": "cronjob",
             "image": "bitnami/moodle:5.0",
-            "schedule": "*/1 * * * *"
+            "schedule": "*/1 * * * *",
+            "volumes": [
+                "data",
+                "userdata"
+            ]
         }
     ],
     "networking": {

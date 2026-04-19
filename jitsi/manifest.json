@@ -3,7 +3,7 @@
     "code": "jitsi",
     "type": "application",
     "version": "stable-10741",
-    "description": "Host secure video meetings and conferences on your own server — no account required for participants.",
+    "description": "Host secure video meetings and conferences on your own server \u2014 no account required for participants.",
     "url": "https://jitsi.org",
     "documentation": "https://jitsi.github.io/handbook/",
     "category": "communication",
@@ -21,6 +21,9 @@
                     "protocol": "TCP",
                     "ingress": true
                 }
+            ],
+            "volumes": [
+                "config"
             ]
         },
         {
@@ -38,13 +41,20 @@
                     "protocol": "TCP",
                     "ingress": false
                 }
+            ],
+            "volumes": [
+                "config",
+                "plugins"
             ]
         },
         {
             "name": "jicofo",
             "type": "deployment",
             "image": "jitsi/jicofo:stable-10741",
-            "ports": []
+            "ports": [],
+            "volumes": [
+                "config"
+            ]
         },
         {
             "name": "jvb",
@@ -56,6 +66,9 @@
                     "protocol": "UDP",
                     "ingress": false
                 }
+            ],
+            "volumes": [
+                "config"
             ]
         },
         {
@@ -74,7 +87,8 @@
                     "ingress": false
                 }
             ],
-            "optional": true
+            "optional": true,
+            "volumes": []
         }
     ],
     "networking": {
