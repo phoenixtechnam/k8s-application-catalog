@@ -71,7 +71,7 @@
             "type": "job",
             "image": "wordpress:cli-2.12.0-php8.4",
             "volumes": [],
-            "resources": { "cpu": "50m", "memory": "128Mi" },
+            "resources": { "cpu": "100m", "memory": "256Mi" },
             "command": [
                 "sh",
                 "-c",
