@@ -109,13 +109,40 @@
         "initial_delay_seconds": 60,
         "period_seconds": 30
     },
+    "env_vars": {
+        "generated": [
+            "MARIADB_ROOT_PASSWORD",
+            "WORDPRESS_DB_PASSWORD"
+        ],
+        "fixed": {
+            "MARIADB_DATABASE": "wordpress",
+            "MARIADB_USER": "wordpress",
+            "MARIADB_PASSWORD": "{{ENV:WORDPRESS_DB_PASSWORD}}",
+            "WORDPRESS_DB_HOST": "{{SERVICE:mariadb}}",
+            "WORDPRESS_DB_NAME": "wordpress",
+            "WORDPRESS_DB_USER": "wordpress"
+        },
+        "configurable": [
+            "WORDPRESS_TABLE_PREFIX",
+            "WORDPRESS_DEBUG",
+            "WORDPRESS_CONFIG_EXTRA"
+        ]
+    },
     "parameters": [
+        {
+            "key": "ingress.domain",
+            "label": "Domain",
+            "type": "string",
+            "required": true,
+            "description": "Hostname at which WordPress will be reachable (e.g. blog.example.com)."
+        },
         {
             "key": "wordpress.siteTitle",
             "label": "Site Title",
             "type": "string",
             "default": "My WordPress Site",
-            "required": true
+            "required": true,
+            "description": "Applied on first login via the WordPress installer."
         },
         {
             "key": "wordpress.adminUser",
@@ -137,77 +164,87 @@
             "required": true
         },
         {
-            "key": "ingress.domain",
-            "label": "Domain",
+            "key": "WORDPRESS_TABLE_PREFIX",
+            "label": "Database Table Prefix",
             "type": "string",
-            "required": true
+            "default": "wp_",
+            "advanced": true,
+            "description": "Prefix for WordPress tables. Rarely needs to change."
+        },
+        {
+            "key": "WORDPRESS_DEBUG",
+            "label": "WordPress Debug Mode",
+            "type": "boolean",
+            "default": false,
+            "advanced": true,
+            "description": "Enables WP_DEBUG in wp-config.php. Verbose — leave off in production."
+        },
+        {
+            "key": "WORDPRESS_CONFIG_EXTRA",
+            "label": "Extra wp-config.php",
+            "type": "string",
+            "advanced": true,
+            "description": "Raw PHP appended to wp-config.php (e.g. define() lines)."
         },
         {
             "key": "wordpress.phpMemoryLimit",
             "label": "PHP Memory Limit",
             "type": "string",
-            "default": "256M"
+            "default": "256M",
+            "advanced": true
         },
         {
             "key": "wordpress.uploadMaxSize",
             "label": "Upload Max Size",
             "type": "string",
-            "default": "64M"
+            "default": "64M",
+            "advanced": true
         },
         {
             "key": "wordpress.maxExecutionTime",
             "label": "Max Execution Time (seconds)",
             "type": "integer",
-            "default": 300
+            "default": 300,
+            "advanced": true
         },
         {
             "key": "redis.enabled",
             "label": "Enable Redis Object Cache",
             "type": "boolean",
-            "default": true
+            "default": true,
+            "advanced": true
         },
         {
             "key": "cron.enabled",
             "label": "Enable WP-Cron via Kubernetes",
             "type": "boolean",
-            "default": true
-        },
-        {
-            "key": "mariadb.storageSize",
-            "label": "Database Storage Size",
-            "type": "string",
-            "default": "5Gi"
-        },
-        {
-            "key": "wpContent.storageSize",
-            "label": "Content Storage Size",
-            "type": "string",
-            "default": "10Gi"
+            "default": true,
+            "advanced": true
         },
         {
             "key": "smtp.host",
             "label": "SMTP Server",
             "type": "string",
-            "required": false
+            "advanced": true
         },
         {
             "key": "smtp.port",
             "label": "SMTP Port",
             "type": "integer",
             "default": 587,
-            "required": false
+            "advanced": true
         },
         {
             "key": "smtp.username",
             "label": "SMTP Username",
             "type": "string",
-            "required": false
+            "advanced": true
         },
         {
             "key": "smtp.password",
             "label": "SMTP Password",
             "type": "secret",
-            "required": false
+            "advanced": true
         }
     ],
     "tags": [
