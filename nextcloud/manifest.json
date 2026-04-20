@@ -66,7 +66,7 @@
                 {
                     "port": 9980,
                     "protocol": "TCP",
-                    "ingress": true
+                    "ingress": false
                 }
             ],
             "optional": true,
