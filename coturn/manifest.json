@@ -68,6 +68,10 @@
         "websocket": false,
         "notes": "Requires hostPort for STUN/TURN. UDP relay ports (49152-49200) also exposed via hostPort range. Only 1 instance per node."
     },
+    "firewall": {
+        "tcp": [3478, 5349],
+        "udp": [3478, 5349, "16384-32768"]
+    },
     "volumes": [],
     "resources": {
         "minimum": {
