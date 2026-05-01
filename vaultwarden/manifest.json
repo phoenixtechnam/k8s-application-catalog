@@ -38,7 +38,7 @@
     },
     "volumes": [
         {
-            "local_path": "applications/vaultwarden",
+            "local_path": ".",
             "container_path": "/data",
             "description": "Vaultwarden data and SQLite database"
         }

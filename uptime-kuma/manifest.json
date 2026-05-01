@@ -38,7 +38,7 @@
     },
     "volumes": [
         {
-            "local_path": "applications/uptime-kuma",
+            "local_path": ".",
             "container_path": "/app/data",
             "description": "Uptime Kuma data and SQLite database"
         }

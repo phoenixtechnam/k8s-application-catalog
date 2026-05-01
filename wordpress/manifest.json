@@ -71,7 +71,10 @@
             "type": "job",
             "image": "wordpress:cli-2.12.0-php8.4",
             "volumes": [],
-            "resources": { "cpu": "100m", "memory": "512Mi" },
+            "resources": {
+                "cpu": "100m",
+                "memory": "512Mi"
+            },
             "command": [
                 "sh",
                 "-c",
@@ -93,12 +96,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/wordpress/content",
+            "local_path": "content",
             "container_path": "/var/www/html/wp-content",
             "description": "Themes, plugins, uploads, and media files"
         },
         {
-            "local_path": "applications/wordpress/database",
+            "local_path": "database",
             "container_path": "/var/lib/mysql",
             "description": "MariaDB data directory"
         }
@@ -194,7 +197,7 @@
             "type": "boolean",
             "default": false,
             "advanced": true,
-            "description": "Enables WP_DEBUG in wp-config.php. Verbose — leave off in production."
+            "description": "Enables WP_DEBUG in wp-config.php. Verbose \u2014 leave off in production."
         },
         {
             "key": "WORDPRESS_CONFIG_EXTRA",

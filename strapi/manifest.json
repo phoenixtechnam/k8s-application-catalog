@@ -53,12 +53,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/strapi/data",
+            "local_path": "data",
             "container_path": "/opt/app",
             "description": "Strapi application data"
         },
         {
-            "local_path": "applications/strapi/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql/data",
             "description": "PostgreSQL database storage"
         }

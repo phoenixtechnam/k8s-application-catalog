@@ -71,12 +71,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/gitea/data",
+            "local_path": "data",
             "container_path": "/data",
             "description": "Gitea repositories and data"
         },
         {
-            "local_path": "applications/gitea/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql/data",
             "description": "PostgreSQL data directory"
         }

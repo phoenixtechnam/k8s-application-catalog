@@ -82,17 +82,17 @@
     },
     "volumes": [
         {
-            "local_path": "applications/moodle-bitnami/data",
+            "local_path": "data",
             "container_path": "/bitnami/moodle",
             "description": "Moodle application data, uploaded files, and course content"
         },
         {
-            "local_path": "applications/moodle-bitnami/userdata",
+            "local_path": "userdata",
             "container_path": "/bitnami/moodledata",
             "description": "Moodle data directory (filedir, cache, sessions)"
         },
         {
-            "local_path": "applications/moodle-bitnami/database",
+            "local_path": "database",
             "container_path": "/bitnami/mariadb",
             "description": "MariaDB data directory"
         }

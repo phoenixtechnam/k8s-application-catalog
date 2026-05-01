@@ -62,12 +62,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/n8n/data",
+            "local_path": "data",
             "container_path": "/home/node/.n8n",
             "description": "n8n workflow data and credentials"
         },
         {
-            "local_path": "applications/n8n/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql",
             "description": "PostgreSQL data directory"
         }

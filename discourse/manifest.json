@@ -69,12 +69,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/discourse/data",
+            "local_path": "data",
             "container_path": "/shared",
             "description": "Discourse shared data and uploads"
         },
         {
-            "local_path": "applications/discourse/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql/data",
             "description": "PostgreSQL data directory"
         }

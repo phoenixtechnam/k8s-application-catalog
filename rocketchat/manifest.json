@@ -56,12 +56,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/rocketchat/uploads",
+            "local_path": "uploads",
             "container_path": "/app/uploads",
             "description": "Rocket.Chat file uploads"
         },
         {
-            "local_path": "applications/rocketchat/database",
+            "local_path": "database",
             "container_path": "/data/db",
             "description": "MongoDB data directory"
         }

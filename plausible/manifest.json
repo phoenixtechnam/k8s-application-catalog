@@ -75,12 +75,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/plausible/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql",
             "description": "PostgreSQL data directory"
         },
         {
-            "local_path": "applications/plausible/clickhouse",
+            "local_path": "clickhouse",
             "container_path": "/var/lib/clickhouse",
             "description": "ClickHouse data directory"
         }

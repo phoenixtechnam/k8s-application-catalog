@@ -58,17 +58,17 @@
     },
     "volumes": [
         {
-            "local_path": "applications/dolibarr/documents",
+            "local_path": "documents",
             "container_path": "/var/www/html/documents",
             "description": "Uploaded files, generated PDFs, and attachments"
         },
         {
-            "local_path": "applications/dolibarr/custom",
+            "local_path": "custom",
             "container_path": "/var/www/html/custom",
             "description": "Custom modules and themes"
         },
         {
-            "local_path": "applications/dolibarr/database",
+            "local_path": "database",
             "container_path": "/var/lib/mysql",
             "description": "MariaDB data directory"
         }

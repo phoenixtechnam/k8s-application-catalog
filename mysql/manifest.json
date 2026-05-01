@@ -3,7 +3,7 @@
     "code": "mysql",
     "type": "database",
     "version": "8.4",
-    "description": "MySQL — dedicated instance for applications requiring MySQL specifically",
+    "description": "MySQL \u2014 dedicated instance for applications requiring MySQL specifically",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mysql",
@@ -34,7 +34,8 @@
     "volumes": [
         {
             "container_path": "/var/lib/mysql",
-            "description": "Database data"
+            "description": "Database data",
+            "local_path": "."
         }
     ],
     "resources": {
@@ -101,7 +102,11 @@
         }
     },
     "env_vars": {
-        "configurable": ["MYSQL_DATABASE", "MYSQL_USER", "MYSQL_PASSWORD"],
+        "configurable": [
+            "MYSQL_DATABASE",
+            "MYSQL_USER",
+            "MYSQL_PASSWORD"
+        ],
         "generated": [
             "MYSQL_ROOT_PASSWORD"
         ],

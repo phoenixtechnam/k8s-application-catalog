@@ -39,7 +39,7 @@
     },
     "volumes": [
         {
-            "local_path": "runtimes/dotnet-8",
+            "local_path": ".",
             "container_path": "/app",
             "description": "Application directory"
         }

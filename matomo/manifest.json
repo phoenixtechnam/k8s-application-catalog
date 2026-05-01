@@ -57,12 +57,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/matomo/data",
+            "local_path": "data",
             "container_path": "/var/www/html",
             "description": "Matomo application data"
         },
         {
-            "local_path": "applications/matomo/database",
+            "local_path": "database",
             "container_path": "/var/lib/mysql",
             "description": "MariaDB data directory"
         }

@@ -56,12 +56,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/bookstack/config",
+            "local_path": "config",
             "container_path": "/config",
             "description": "BookStack configuration and uploads"
         },
         {
-            "local_path": "applications/bookstack/database",
+            "local_path": "database",
             "container_path": "/var/lib/mysql",
             "description": "MariaDB data directory"
         }

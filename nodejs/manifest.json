@@ -39,7 +39,7 @@
     },
     "volumes": [
         {
-            "local_path": "runtimes/nodejs",
+            "local_path": ".",
             "container_path": "/app",
             "description": "Application directory"
         }

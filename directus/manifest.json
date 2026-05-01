@@ -61,17 +61,17 @@
     },
     "volumes": [
         {
-            "local_path": "applications/directus/uploads",
+            "local_path": "uploads",
             "container_path": "/directus/uploads",
             "description": "Directus file uploads"
         },
         {
-            "local_path": "applications/directus/extensions",
+            "local_path": "extensions",
             "container_path": "/directus/extensions",
             "description": "Directus custom extensions"
         },
         {
-            "local_path": "applications/directus/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql",
             "description": "PostgreSQL database storage"
         }

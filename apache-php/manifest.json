@@ -39,7 +39,7 @@
     },
     "volumes": [
         {
-            "local_path": "website_files",
+            "local_path": ".",
             "container_path": "/var/www/html",
             "description": "Document root"
         }

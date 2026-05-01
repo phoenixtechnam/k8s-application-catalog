@@ -3,7 +3,7 @@
     "code": "mariadb",
     "type": "database",
     "version": "11",
-    "description": "MariaDB — dedicated instance for client databases with multiple version support",
+    "description": "MariaDB \u2014 dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mariadb",
@@ -34,7 +34,8 @@
     "volumes": [
         {
             "container_path": "/var/lib/mysql",
-            "description": "Database data"
+            "description": "Database data",
+            "local_path": "."
         }
     ],
     "resources": {
@@ -102,7 +103,11 @@
         }
     },
     "env_vars": {
-        "configurable": ["MARIADB_DATABASE", "MARIADB_USER", "MARIADB_PASSWORD"],
+        "configurable": [
+            "MARIADB_DATABASE",
+            "MARIADB_USER",
+            "MARIADB_PASSWORD"
+        ],
         "generated": [
             "MARIADB_ROOT_PASSWORD"
         ],

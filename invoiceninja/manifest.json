@@ -54,17 +54,17 @@
     },
     "volumes": [
         {
-            "local_path": "applications/invoiceninja/public",
+            "local_path": "public",
             "container_path": "/var/www/app/public",
             "description": "Public assets and generated files"
         },
         {
-            "local_path": "applications/invoiceninja/storage",
+            "local_path": "storage",
             "container_path": "/var/www/app/storage",
             "description": "Application storage (invoices, logs, cache)"
         },
         {
-            "local_path": "applications/invoiceninja/database",
+            "local_path": "database",
             "container_path": "/var/lib/mysql",
             "description": "MariaDB database storage"
         }

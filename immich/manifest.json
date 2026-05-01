@@ -85,17 +85,17 @@
     },
     "volumes": [
         {
-            "local_path": "applications/immich/uploads",
+            "local_path": "uploads",
             "container_path": "/usr/src/app/upload",
             "description": "Immich photo and video uploads"
         },
         {
-            "local_path": "applications/immich/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql/data",
             "description": "PostgreSQL data directory"
         },
         {
-            "local_path": "applications/immich/ml-cache",
+            "local_path": "ml-cache",
             "container_path": "/cache",
             "description": "Machine learning model cache"
         }

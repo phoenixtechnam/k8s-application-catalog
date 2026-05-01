@@ -99,22 +99,22 @@
     },
     "volumes": [
         {
-            "local_path": "applications/nextcloud/data",
+            "local_path": "data",
             "container_path": "/var/www/html/data",
             "description": "User files, uploads, and shared data"
         },
         {
-            "local_path": "applications/nextcloud/config",
+            "local_path": "config",
             "container_path": "/var/www/html/config",
             "description": "Nextcloud configuration files"
         },
         {
-            "local_path": "applications/nextcloud/apps",
+            "local_path": "apps",
             "container_path": "/var/www/html/custom_apps",
             "description": "Installed Nextcloud apps"
         },
         {
-            "local_path": "applications/nextcloud/database",
+            "local_path": "database",
             "container_path": "/var/lib/mysql",
             "description": "MariaDB data directory"
         }

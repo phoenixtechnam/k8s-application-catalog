@@ -3,7 +3,7 @@
     "code": "mongodb-7",
     "type": "database",
     "version": "7",
-    "description": "MongoDB 7 document database — dedicated instance for NoSQL applications",
+    "description": "MongoDB 7 document database \u2014 dedicated instance for NoSQL applications",
     "category": "database",
     "min_plan": "business",
     "runtime": "mongodb",
@@ -33,7 +33,7 @@
     },
     "volumes": [
         {
-            "local_path": "databases/mongodb-7",
+            "local_path": ".",
             "container_path": "/data/db",
             "description": "Database data"
         }
@@ -89,7 +89,9 @@
         }
     },
     "env_vars": {
-        "configurable": ["MONGO_INITDB_DATABASE"],
+        "configurable": [
+            "MONGO_INITDB_DATABASE"
+        ],
         "generated": [
             "MONGO_INITDB_ROOT_PASSWORD"
         ],

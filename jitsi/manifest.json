@@ -125,12 +125,12 @@
     },
     "volumes": [
         {
-            "local_path": "applications/jitsi/config",
+            "local_path": "config",
             "container_path": "/config",
             "description": "Prosody XMPP configuration and certificates"
         },
         {
-            "local_path": "applications/jitsi/plugins",
+            "local_path": "plugins",
             "container_path": "/prosody-plugins-custom",
             "description": "Custom Prosody plugins",
             "optional": true

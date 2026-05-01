@@ -73,22 +73,22 @@
     },
     "volumes": [
         {
-            "local_path": "applications/paperless-ngx/data",
+            "local_path": "data",
             "container_path": "/usr/src/paperless/data",
             "description": "Paperless application data and index"
         },
         {
-            "local_path": "applications/paperless-ngx/media",
+            "local_path": "media",
             "container_path": "/usr/src/paperless/media",
             "description": "Stored and processed documents"
         },
         {
-            "local_path": "applications/paperless-ngx/consume",
+            "local_path": "consume",
             "container_path": "/usr/src/paperless/consume",
             "description": "Consumption directory for incoming documents"
         },
         {
-            "local_path": "applications/paperless-ngx/database",
+            "local_path": "database",
             "container_path": "/var/lib/postgresql",
             "description": "PostgreSQL database storage"
         }

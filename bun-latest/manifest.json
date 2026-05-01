@@ -3,7 +3,7 @@
     "code": "bun-latest",
     "type": "runtime",
     "version": "1.2",
-    "description": "Bun runtime — fast JavaScript/TypeScript runtime, bundler, and package manager",
+    "description": "Bun runtime \u2014 fast JavaScript/TypeScript runtime, bundler, and package manager",
     "category": "runtime",
     "min_plan": "starter",
     "runtime": "bun",
@@ -39,7 +39,7 @@
     },
     "volumes": [
         {
-            "local_path": "runtimes/bun-latest",
+            "local_path": ".",
             "container_path": "/app",
             "description": "Application directory"
         }

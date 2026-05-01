@@ -3,7 +3,7 @@
     "code": "redis-7",
     "type": "service",
     "version": "7",
-    "description": "Redis 7 in-memory cache — dedicated instance",
+    "description": "Redis 7 in-memory cache \u2014 dedicated instance",
     "category": "cache",
     "min_plan": "business",
     "runtime": "redis",
@@ -32,7 +32,7 @@
     },
     "volumes": [
         {
-            "local_path": "services/redis-7",
+            "local_path": ".",
             "container_path": "/data",
             "description": "Cache data"
         }

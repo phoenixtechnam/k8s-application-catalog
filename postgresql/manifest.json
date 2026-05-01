@@ -3,7 +3,7 @@
     "code": "postgresql",
     "type": "database",
     "version": "18",
-    "description": "PostgreSQL — dedicated instance for client databases with multiple version support",
+    "description": "PostgreSQL \u2014 dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "postgresql",
@@ -34,7 +34,8 @@
     "volumes": [
         {
             "container_path": "/var/lib/postgresql",
-            "description": "Database data"
+            "description": "Database data",
+            "local_path": "."
         }
     ],
     "resources": {
@@ -94,7 +95,10 @@
         }
     },
     "env_vars": {
-        "configurable": ["POSTGRES_DB", "POSTGRES_USER"],
+        "configurable": [
+            "POSTGRES_DB",
+            "POSTGRES_USER"
+        ],
         "generated": [
             "POSTGRES_PASSWORD"
         ],
