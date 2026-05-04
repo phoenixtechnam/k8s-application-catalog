@@ -3,7 +3,7 @@
     "code": "redis-7",
     "type": "service",
     "version": "7",
-    "description": "Redis 7 in-memory cache \u2014 dedicated instance",
+    "description": "Redis 7 in-memory cache — dedicated instance",
     "category": "cache",
     "min_plan": "business",
     "runtime": "redis",

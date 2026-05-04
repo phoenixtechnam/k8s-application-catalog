@@ -3,7 +3,7 @@
     "code": "mongodb-7",
     "type": "database",
     "version": "7",
-    "description": "MongoDB 7 document database \u2014 dedicated instance for NoSQL applications",
+    "description": "MongoDB 7 document database — dedicated instance for NoSQL applications",
     "category": "database",
     "min_plan": "business",
     "runtime": "mongodb",

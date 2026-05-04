@@ -3,7 +3,7 @@
     "code": "mariadb",
     "type": "database",
     "version": "11",
-    "description": "MariaDB \u2014 dedicated instance for client databases with multiple version support",
+    "description": "MariaDB — dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mariadb",

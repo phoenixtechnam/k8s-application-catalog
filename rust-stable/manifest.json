@@ -3,7 +3,7 @@
     "code": "rust-stable",
     "type": "runtime",
     "version": "1.85",
-    "description": "Rust stable runtime for compiled web services \u2014 Actix, Axum, Rocket, and other Rust web frameworks",
+    "description": "Rust stable runtime for compiled web services — Actix, Axum, Rocket, and other Rust web frameworks",
     "category": "runtime",
     "min_plan": "business",
     "runtime": "rust",

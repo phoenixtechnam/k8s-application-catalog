@@ -198,6 +198,50 @@
                         "type": "string",
                         "description": "Cron schedule (only for cronjob type)",
                         "pattern": "^[0-9*/,-]+\\s+[0-9*/,-]+\\s+[0-9*/,-]+\\s+[0-9*/,-]+\\s+[0-9*/,-]+$"
+                    },
+                    "command": {
+                        "type": "array",
+                        "description": "Container command override (used by job/cronjob components)",
+                        "items": { "type": "string" }
+                    },
+                    "database": {
+                        "type": "string",
+                        "description": "Database engine this component provides — enables SQL Manager access",
+                        "enum": ["mariadb", "mysql", "postgresql", "mongodb"]
+                    },
+                    "env_vars": {
+                        "type": "object",
+                        "description": "Component-scoped env vars (overrides top-level for this component)",
+                        "properties": {
+                            "fixed": {
+                                "type": "object",
+                                "additionalProperties": { "type": "string" }
+                            },
+                            "generated": {
+                                "type": "array",
+                                "items": { "type": "string" }
+                            },
+                            "configurable": {
+                                "type": "array",
+                                "items": { "type": "string" }
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "resources": {
+                        "type": "object",
+                        "description": "Per-component resource requests/limits override",
+                        "properties": {
+                            "cpu": { "type": "string" },
+                            "memory": { "type": "string" },
+                            "storage": { "type": "string" }
+                        },
+                        "additionalProperties": false
+                    },
+                    "volumes": {
+                        "type": "array",
+                        "description": "Top-level volume keys this component mounts (must match volumes[].local_path)",
+                        "items": { "type": "string" }
                     }
                 },
                 "additionalProperties": false,
@@ -291,6 +335,23 @@
                 },
                 "notes": {
                     "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "firewall": {
+            "type": "object",
+            "description": "Cluster-firewall ports this entry needs opened on tenant-running nodes",
+            "properties": {
+                "tcp": {
+                    "type": "array",
+                    "description": "TCP ports or 'start-end' ranges",
+                    "items": { "type": ["integer", "string"] }
+                },
+                "udp": {
+                    "type": "array",
+                    "description": "UDP ports or 'start-end' ranges",
+                    "items": { "type": ["integer", "string"] }
                 }
             },
             "additionalProperties": false
@@ -408,6 +469,11 @@
                     },
                     "description": {
                         "type": "string"
+                    },
+                    "advanced": {
+                        "type": "boolean",
+                        "description": "When true, UI hides this parameter behind an Advanced toggle on first deploy",
+                        "default": false
                     }
                 },
                 "additionalProperties": false

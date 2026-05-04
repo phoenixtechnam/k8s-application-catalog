@@ -3,7 +3,7 @@
     "code": "mysql",
     "type": "database",
     "version": "8.4",
-    "description": "MySQL \u2014 dedicated instance for applications requiring MySQL specifically",
+    "description": "MySQL — dedicated instance for applications requiring MySQL specifically",
     "category": "database",
     "min_plan": "starter",
     "runtime": "mysql",

@@ -3,7 +3,7 @@
     "code": "dolibarr",
     "type": "application",
     "version": "20",
-    "description": "Manage your business with an open-source ERP and CRM \u2014 invoicing, accounting, inventory, HR, and project management in one platform.",
+    "description": "Manage your business with an open-source ERP and CRM — invoicing, accounting, inventory, HR, and project management in one platform.",
     "url": "https://www.dolibarr.org",
     "documentation": "https://wiki.dolibarr.org",
     "category": "billing",

@@ -3,7 +3,7 @@
     "code": "postgresql",
     "type": "database",
     "version": "18",
-    "description": "PostgreSQL \u2014 dedicated instance for client databases with multiple version support",
+    "description": "PostgreSQL — dedicated instance for client databases with multiple version support",
     "category": "database",
     "min_plan": "starter",
     "runtime": "postgresql",
@@ -120,6 +120,7 @@
             ],
             "volumes": [
                 {
+                    "local_path": ".",
                     "container_path": "/var/lib/postgresql",
                     "description": "Database data (PG 18+ convention: mount parent dir)"
                 }

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: nginx-php84
+name: nginx-php
 description: NGINX web server with PHP-FPM 8.4 for modern PHP applications
 type: application
 version: 0.1.0
