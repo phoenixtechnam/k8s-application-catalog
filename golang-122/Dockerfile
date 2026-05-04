@@ -1,21 +1,16 @@
-FROM golang:1.22-alpine AS builder
+FROM golang:1.22-alpine
 
-RUN apk add --no-cache git ca-certificates
+RUN apk add --no-cache git ca-certificates curl \
+  && adduser -D -u 1000 webuser \
+  && mkdir -p /app && chown -R webuser:webuser /app
 
-WORKDIR /build
+WORKDIR /app
 
-COPY go.mod go.sum ./
-RUN go mod download
-
-COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/server .
-
-FROM gcr.io/distroless/static:nonroot
-
-COPY --from=builder /app/server /server
-
-USER nonroot:nonroot
+USER webuser
 
 EXPOSE 8080
 
-ENTRYPOINT ["/server"]
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD wget -q --spider http://localhost:8080/health || exit 1
+
+CMD ["./server"]

@@ -1,18 +1,18 @@
-FROM rust:1.85-slim AS builder
-
-WORKDIR /app
-COPY . /app/
-
-RUN cargo build --release
-
-FROM debian:bookworm-slim
+FROM rust:1.85-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    ca-certificates curl pkg-config libssl-dev \
+  && rm -rf /var/lib/apt/lists/* \
+  && useradd -u 1000 -ms /bin/bash webuser \
+  && mkdir -p /app && chown -R webuser:webuser /app
 
-COPY --from=builder /app/target/release/app /usr/local/bin/app
+WORKDIR /app
+
+USER webuser
 
 EXPOSE 8080
 
-CMD ["app"]
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD curl -fsS http://localhost:8080/health || exit 1
+
+CMD ["./app"]

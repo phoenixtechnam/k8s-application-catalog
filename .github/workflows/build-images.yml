@@ -14,6 +14,7 @@ on:
       - 'static-nginx/nginx.conf'
       - 'static-nginx/.dockerignore'
       - 'static-apache/Dockerfile'
+      - 'static-apache/httpd.conf'
       - 'static-apache/.dockerignore'
       - 'nodejs/Dockerfile'
       - 'nodejs/.dockerignore'
@@ -43,6 +44,7 @@ on:
       - 'static-nginx/nginx.conf'
       - 'static-nginx/.dockerignore'
       - 'static-apache/Dockerfile'
+      - 'static-apache/httpd.conf'
       - 'static-apache/.dockerignore'
       - 'nodejs/Dockerfile'
       - 'nodejs/.dockerignore'
@@ -99,6 +101,7 @@ jobs:
               - '.github/workflows/build-images.yml'
             static-apache:
               - 'static-apache/Dockerfile'
+              - 'static-apache/httpd.conf'
               - 'static-apache/.dockerignore'
               - '.github/workflows/build-images.yml'
             nodejs:
