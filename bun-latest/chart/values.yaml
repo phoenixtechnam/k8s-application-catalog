@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: oven/bun
+  repository: ghcr.io/phoenixtechnam/k8s-application-catalog/bun-latest
   tag: "1.2"
   pullPolicy: IfNotPresent
 

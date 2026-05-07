@@ -15,4 +15,5 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
   CMD curl -fsS http://localhost:8080/health || exit 1
 
-CMD ["./app"]
+# Idle fallback when no compiled Rust binary is present. See nodejs/Dockerfile.
+CMD ["sh", "-c", "if [ -x /app/app ]; then exec /app/app; else echo '[runtime] No /app/app binary — idle. Build your Rust app to /app/app and restart.'; exec sleep infinity; fi"]

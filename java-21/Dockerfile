@@ -1,6 +1,7 @@
 FROM eclipse-temurin:21-jre-alpine
 
-RUN adduser -D -u 1000 webuser \
+RUN apk add --no-cache curl \
+  && adduser -D -u 1000 webuser \
   && mkdir -p /app && chown -R webuser:webuser /app
 
 WORKDIR /app
@@ -12,4 +13,6 @@ EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
   CMD wget -q --spider http://localhost:8080/actuator/health || exit 1
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Idle fallback when no fat JAR is present. See nodejs/Dockerfile.
+ENTRYPOINT ["sh", "-c"]
+CMD ["if [ -f /app/app.jar ]; then exec java -jar /app/app.jar; else echo '[runtime] No /app/app.jar — idle. Mount your Spring Boot fat JAR and restart.'; exec sleep infinity; fi"]

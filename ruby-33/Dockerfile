@@ -21,4 +21,6 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
   CMD wget -q --spider http://localhost:3000/health || exit 1
 
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+# Idle fallback when no Gemfile / app code is staged. See nodejs/Dockerfile
+# for the rationale.
+CMD ["sh", "-c", "if [ -f /app/config/puma.rb ] && [ -f /app/Gemfile ]; then exec bundle exec puma -C config/puma.rb; else echo '[runtime] No /app/config/puma.rb + /app/Gemfile — idle. Mount your Rails/Sinatra app and restart the deployment.'; exec sleep infinity; fi"]
