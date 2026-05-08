@@ -17,7 +17,7 @@
             "image": "moodlehq/moodle-php-apache:8.1",
             "ports": [
                 {
-                    "port": 8080,
+                    "port": 80,
                     "protocol": "TCP",
                     "ingress": true
                 }
@@ -111,7 +111,7 @@
     },
     "health_check": {
         "path": "/login/index.php",
-        "port": 8080,
+        "port": 80,
         "initial_delay_seconds": 180,
         "period_seconds": 30
     },

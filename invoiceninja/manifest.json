@@ -14,7 +14,7 @@
         {
             "name": "invoiceninja",
             "type": "deployment",
-            "image": "invoiceninja/invoiceninja:5",
+            "image": "invoiceninja/invoiceninja-debian:5",
             "ports": [
                 {
                     "port": 80,
@@ -168,7 +168,7 @@
             "components": [
                 {
                     "name": "invoiceninja",
-                    "image": "invoiceninja/invoiceninja:4"
+                    "image": "invoiceninja/invoiceninja-debian:4"
                 }
             ],
             "eolDate": "2026-09-30",
@@ -180,7 +180,7 @@
             "components": [
                 {
                     "name": "invoiceninja",
-                    "image": "invoiceninja/invoiceninja:5"
+                    "image": "invoiceninja/invoiceninja-debian:5"
                 }
             ],
             "upgradeFrom": [
