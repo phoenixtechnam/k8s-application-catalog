@@ -14,7 +14,7 @@
         {
             "name": "moodle",
             "type": "deployment",
-            "image": "bitnami/moodle:5.0",
+            "image": "moodlehq/moodle-php-apache:8.1",
             "ports": [
                 {
                     "port": 8080,
@@ -30,7 +30,7 @@
         {
             "name": "mariadb",
             "type": "deployment",
-            "image": "bitnami/mariadb:11.8",
+            "image": "mariadb:11.8",
             "ports": [
                 {
                     "port": 3306,
@@ -59,7 +59,7 @@
         {
             "name": "moodle-cron",
             "type": "cronjob",
-            "image": "bitnami/moodle:5.0",
+            "image": "moodlehq/moodle-php-apache:8.1",
             "schedule": "*/1 * * * *",
             "volumes": [
                 "data",
@@ -223,11 +223,11 @@
             "components": [
                 {
                     "name": "moodle",
-                    "image": "bitnami/moodle:4.5"
+                    "image": "moodlehq/moodle-php-apache:8.1"
                 },
                 {
                     "name": "moodle-cron",
-                    "image": "bitnami/moodle:4.5"
+                    "image": "moodlehq/moodle-php-apache:8.1"
                 }
             ],
             "eolDate": "2026-09-30",
@@ -238,11 +238,11 @@
             "components": [
                 {
                     "name": "moodle",
-                    "image": "bitnami/moodle:5.0"
+                    "image": "moodlehq/moodle-php-apache:8.1"
                 },
                 {
                     "name": "moodle-cron",
-                    "image": "bitnami/moodle:5.0"
+                    "image": "moodlehq/moodle-php-apache:8.1"
                 }
             ],
             "upgradeFrom": [

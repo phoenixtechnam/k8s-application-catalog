@@ -48,7 +48,7 @@
         {
             "name": "clickhouse",
             "type": "deployment",
-            "image": "clickhouse/clickhouse-server:26",
+            "image": "clickhouse/clickhouse-server:24",
             "ports": [
                 {
                     "port": 8123,

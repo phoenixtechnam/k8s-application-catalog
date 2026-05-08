@@ -14,7 +14,7 @@
         {
             "name": "strapi",
             "type": "deployment",
-            "image": "node:22-alpine",
+            "image": "naskio/strapi:latest",
             "ports": [
                 {
                     "port": 1337,
@@ -137,7 +137,7 @@
             "components": [
                 {
                     "name": "strapi",
-                    "image": "node:22-alpine"
+                    "image": "naskio/strapi:latest"
                 }
             ],
             "eolDate": "2026-09-30",
@@ -149,7 +149,7 @@
             "components": [
                 {
                     "name": "strapi",
-                    "image": "node:22-alpine"
+                    "image": "naskio/strapi:latest"
                 }
             ],
             "upgradeFrom": [

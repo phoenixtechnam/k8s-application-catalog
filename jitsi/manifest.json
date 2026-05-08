@@ -232,6 +232,35 @@
         "meeting",
         "communication"
     ],
+    "env_vars": {
+        "fixed": {
+            "ENABLE_AUTH": "0",
+            "ENABLE_GUESTS": "1",
+            "PUBLIC_URL": "http://localhost",
+            "XMPP_DOMAIN": "meet.jitsi",
+            "XMPP_AUTH_DOMAIN": "auth.meet.jitsi",
+            "XMPP_BOSH_URL_BASE": "http://{{SERVICE:prosody}}:5280",
+            "XMPP_GUEST_DOMAIN": "guest.meet.jitsi",
+            "XMPP_MUC_DOMAIN": "muc.meet.jitsi",
+            "XMPP_INTERNAL_MUC_DOMAIN": "internal-muc.meet.jitsi",
+            "XMPP_RECORDER_DOMAIN": "recorder.meet.jitsi",
+            "XMPP_SERVER": "{{SERVICE:prosody}}",
+            "JICOFO_AUTH_USER": "focus",
+            "JVB_BREWERY_MUC": "jvbbrewery",
+            "JVB_PORT": "10000",
+            "JVB_STUN_SERVERS": "meet-jit-si-turnrelay.jitsi.net:443",
+            "TZ": "UTC"
+        },
+        "generated": [
+            "JICOFO_AUTH_PASSWORD",
+            "JVB_AUTH_PASSWORD",
+            "JICOFO_COMPONENT_SECRET"
+        ],
+        "configurable": [
+            "PUBLIC_URL",
+            "ENABLE_AUTH"
+        ]
+    },
     "supportedVersions": [
         {
             "version": "stable-10522",
