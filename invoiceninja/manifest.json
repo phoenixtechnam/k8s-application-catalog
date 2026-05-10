@@ -206,7 +206,11 @@
             "DB_USERNAME": "invoiceninja",
             "DB_PASSWORD": "{{ENV:INVOICENINJA_DB_PASSWORD}}",
             "DB_STRICT": "false",
-            "APP_ENV": "production"
+            "APP_ENV": "production",
+            "APP_URL": "http://localhost",
+            "APP_DEBUG": "false",
+            "REQUIRE_HTTPS": "false",
+            "APP_CIPHER": "AES-256-CBC"
         },
         "configurable": [
             "APP_URL",
