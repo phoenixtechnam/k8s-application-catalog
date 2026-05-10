@@ -15,6 +15,11 @@
             "name": "plausible",
             "type": "deployment",
             "image": "ghcr.io/plausible/community-edition:v3",
+            "command": [
+                "sh",
+                "-c",
+                "/app/bin/plausible eval 'Plausible.Release.migrate()' && /app/bin/plausible start"
+            ],
             "ports": [
                 {
                     "port": 8000,
