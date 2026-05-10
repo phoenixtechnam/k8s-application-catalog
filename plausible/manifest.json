@@ -18,7 +18,7 @@
             "command": [
                 "sh",
                 "-c",
-                "/app/bin/plausible eval 'Plausible.Release.migrate()' && /app/bin/plausible start"
+                "/app/bin/plausible eval 'Plausible.Release.createdb()' && /app/bin/plausible eval 'Plausible.Release.interweave_migrate()' && /app/bin/plausible start"
             ],
             "ports": [
                 {
