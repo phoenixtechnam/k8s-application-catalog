@@ -30,6 +30,11 @@
             "name": "mongodb",
             "type": "deployment",
             "image": "mongo:8",
+            "command": [
+                "bash",
+                "-c",
+                "set -e\nmongod --replSet rs0 --bind_ip_all &\nMONGOD_PID=$!\nuntil mongosh --quiet --eval 'db.adminCommand({ping:1})' >/dev/null 2>&1; do sleep 1; done\nif ! mongosh --quiet --eval 'rs.status().ok' 2>/dev/null | grep -q '^1'; then\n  mongosh --quiet --eval 'rs.initiate({_id:\"rs0\",members:[{_id:0,host:\"localhost:27017\"}]})'\nfi\nwait $MONGOD_PID\n"
+            ],
             "ports": [
                 {
                     "port": 27017,
@@ -68,13 +73,13 @@
     ],
     "resources": {
         "minimum": {
-            "cpu": "0.50",
-            "memory": "512Mi",
+            "cpu": "1.00",
+            "memory": "1Gi",
             "storage": "10Gi"
         },
         "recommended": {
-            "cpu": "1.00",
-            "memory": "1Gi",
+            "cpu": "2.00",
+            "memory": "2Gi",
             "storage": "20Gi"
         }
     },
@@ -183,14 +188,13 @@
         }
     ],
     "env_vars": {
-        "generated": [
-            "MONGO_INITDB_ROOT_PASSWORD"
-        ],
+        "generated": [],
         "fixed": {
-            "MONGO_INITDB_ROOT_USERNAME": "root",
-            "MONGO_INITDB_DATABASE": "rocketchat",
-            "MONGO_URL": "mongodb://root:{{ENV_URLSAFE:MONGO_INITDB_ROOT_PASSWORD}}@{{SERVICE:mongodb}}:27017/rocketchat?authSource=admin",
-            "MONGO_OPLOG_URL": "mongodb://root:{{ENV_URLSAFE:MONGO_INITDB_ROOT_PASSWORD}}@{{SERVICE:mongodb}}:27017/local?authSource=admin"
+            "MONGO_URL": "mongodb://{{SERVICE:mongodb}}:27017/rocketchat?replicaSet=rs0",
+            "MONGO_OPLOG_URL": "mongodb://{{SERVICE:mongodb}}:27017/local?replicaSet=rs0",
+            "NODE_OPTIONS": "--max-old-space-size=768",
+            "DEPLOY_METHOD": "docker",
+            "OVERWRITE_SETTING_Show_Setup_Wizard": "pending"
         },
         "configurable": [
             "ROOT_URL"
